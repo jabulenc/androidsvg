@@ -77,20 +77,20 @@ import javax.xml.parsers.SAXParserFactory;
 
 class SVGParserImpl implements SVGParser
 {
-   private static final String  TAG = "SVGParser";
+   public static final String  TAG = "SVGParser";
 
-   private static final String  SVG_NAMESPACE = "http://www.w3.org/2000/svg";
-   private static final String  XLINK_NAMESPACE = "http://www.w3.org/1999/xlink";
-   private static final String  FEATURE_STRING_PREFIX = "http://www.w3.org/TR/SVG11/feature#";
+   public static final String  SVG_NAMESPACE = "http://www.w3.org/2000/svg";
+   public static final String  XLINK_NAMESPACE = "http://www.w3.org/1999/xlink";
+   public static final String  FEATURE_STRING_PREFIX = "http://www.w3.org/TR/SVG11/feature#";
 
-   private static final String  XML_STYLESHEET_PROCESSING_INSTRUCTION = "xml-stylesheet";
+   public static final String  XML_STYLESHEET_PROCESSING_INSTRUCTION = "xml-stylesheet";
 
    // Versions of Android earlier than 15 (ICS) have an XmlPullParser that doesn't support the
    // nextToken() method. Also, they throw an exception when calling setFeature().
    // So for simplicity, we'll just force the use of the SAX parser on Androids < 15.
-   private static final boolean FORCE_SAX_ON_EARLY_ANDROIDS = (android.os.Build.VERSION.SDK_INT < 15);
+   public static final boolean FORCE_SAX_ON_EARLY_ANDROIDS = (android.os.Build.VERSION.SDK_INT < 15);
 
-   private static final Pattern PATTERN_BLOCK_COMMENTS = Pattern.compile("/\\*.*?\\*/");
+   public static final Pattern PATTERN_BLOCK_COMMENTS = Pattern.compile("/\\*.*?\\*/");
 
    // <?xml-stylesheet> attribute names and values
    public static final String  XML_STYLESHEET_ATTR_TYPE = "type";
@@ -107,27 +107,27 @@ class SVGParserImpl implements SVGParser
 
 
    // SVG parser
-   private SVGBase                  svgDocument = null;
-   private SVGBase.SvgContainer     currentElement = null;
-   private boolean                  enableInternalEntities = true;
-   private SVGExternalFileResolver  externalFileResolver = null;
+   public SVGBase                  svgDocument = null;
+   public SVGBase.SvgContainer     currentElement = null;
+   public boolean                  enableInternalEntities = true;
+   public SVGExternalFileResolver  externalFileResolver = null;
 
    // For handling elements we don't support
-   private boolean   ignoring = false;
-   private int       ignoreDepth;
+   public boolean   ignoring = false;
+   public int       ignoreDepth;
 
    // For handling <title> and <desc>
-   private boolean        inMetadataElement = false;
-   private SVGElem        metadataTag = null;
-   private StringBuilder  metadataElementContents = null;
+   public boolean        inMetadataElement = false;
+   public SVGElem        metadataTag = null;
+   public StringBuilder  metadataElementContents = null;
 
    // For handling <style>
-   private boolean        inStyleElement = false;
-   private StringBuilder  styleElementContents = null;
+   public boolean        inStyleElement = false;
+   public StringBuilder  styleElementContents = null;
 
 
    // Define SVG tags
-   private enum  SVGElem
+   public enum  SVGElem
    {
       svg,
       a,
@@ -162,7 +162,7 @@ class SVGParserImpl implements SVGParser
       view,
       UNSUPPORTED;
 
-      private static final Map<String, SVGElem> cache = new HashMap<>();
+      public static final Map<String, SVGElem> cache = new HashMap<>();
 
       static {
          for (SVGElem elem : values()) {
@@ -337,7 +337,7 @@ class SVGParserImpl implements SVGParser
       visibility,
       UNSUPPORTED;
 
-      private static final Map<String, SVGAttr> cache = new HashMap<>();
+      public static final Map<String, SVGAttr> cache = new HashMap<>();
 
       static {
          for (SVGAttr attr : values()) {
@@ -373,8 +373,8 @@ class SVGParserImpl implements SVGParser
    static final String VALID_VISIBILITY_VALUES = "|visible|hidden|collapse|";
 
    // These static inner classes are only loaded/initialized when first used and are thread safe
-   private static class ColourKeywords {
-      private static final Map<String, Integer> colourKeywords = new HashMap<>(47);
+   public static class ColourKeywords {
+      public static final Map<String, Integer> colourKeywords = new HashMap<>(47);
       static {
          colourKeywords.put("aliceblue", 0xfff0f8ff);
          colourKeywords.put("antiquewhite", 0xfffaebd7);
@@ -532,8 +532,8 @@ class SVGParserImpl implements SVGParser
       }
    }
 
-   private static class FontSizeKeywords {
-      private static final Map<String, Length> fontSizeKeywords = new HashMap<>(9);
+   public static class FontSizeKeywords {
+      public static final Map<String, Length> fontSizeKeywords = new HashMap<>(9);
       static {
          fontSizeKeywords.put("xx-small", new Length(0.694f, Unit.pt));
          fontSizeKeywords.put("x-small", new Length(0.833f, Unit.pt));
@@ -551,8 +551,8 @@ class SVGParserImpl implements SVGParser
       }
    }
 
-   private static class FontWeightKeywords {
-      private static final Map<String, Float> fontWeightKeywords = new HashMap<>(4);
+   public static class FontWeightKeywords {
+      public static final Map<String, Float> fontWeightKeywords = new HashMap<>(4);
       static {
          fontWeightKeywords.put("normal", Style.FONT_WEIGHT_NORMAL);
          fontWeightKeywords.put("bold", Style.FONT_WEIGHT_BOLD);
@@ -569,8 +569,8 @@ class SVGParserImpl implements SVGParser
       }
    }
 
-   private static class FontStretchKeywords {
-      private static final Map<String, Float> fontStretchKeywords = new HashMap<>(9);
+   public static class FontStretchKeywords {
+      public static final Map<String, Float> fontStretchKeywords = new HashMap<>(9);
       static {
          fontStretchKeywords.put("ultra-condensed", 50f);
          fontStretchKeywords.put("extra-condensed", 62.5f);
@@ -693,9 +693,9 @@ class SVGParserImpl implements SVGParser
    /*
     * Implements the SAX Attributes class so that our parser can share a common attributes object
     */
-   private static class  XPPAttributesWrapper  implements Attributes
+   public static class  XPPAttributesWrapper  implements Attributes
    {
-      private final XmlPullParser  parser;
+      public final XmlPullParser  parser;
 
       public XPPAttributesWrapper(XmlPullParser parser)
       {
@@ -753,7 +753,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void parseUsingXmlPullParser(InputStream is) throws SVGParseException
+   public void parseUsingXmlPullParser(InputStream is) throws SVGParseException
    {
       try
       {
@@ -831,7 +831,7 @@ class SVGParserImpl implements SVGParser
    //=========================================================================
 
 
-   private void parseUsingSAX(InputStream is) throws SVGParseException
+   public void parseUsingSAX(InputStream is) throws SVGParseException
    {
       try
       {
@@ -868,7 +868,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private class  SAXHandler  extends DefaultHandler2
+   public class  SAXHandler  extends DefaultHandler2
    {
       @Override
       public void startDocument()
@@ -929,13 +929,13 @@ class SVGParserImpl implements SVGParser
    //=========================================================================
 
 
-   private void startDocument()
+   public void startDocument()
    {
       SVGParserImpl.this.svgDocument = new SVGBase(enableInternalEntities, externalFileResolver);
    }
 
 
-   private void startElement(String uri, String localName, String qName, Attributes attributes) throws SVGParseException
+   public void startElement(String uri, String localName, String qName, Attributes attributes) throws SVGParseException
    {
       if (ignoring) {
          ignoreDepth++;
@@ -1021,7 +1021,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  text(String characters) throws SVGParseException
+   public void  text(String characters) throws SVGParseException
    {
       if (ignoring)
          return;
@@ -1045,7 +1045,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  text(char[] ch, int start, int length) throws SVGParseException
+   public void  text(char[] ch, int start, int length) throws SVGParseException
    {
       if (ignoring)
          return;
@@ -1070,7 +1070,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  appendToTextContainer(String characters) throws SVGParseException
+   public void  appendToTextContainer(String characters) throws SVGParseException
    {
       // The parser can pass us several text nodes in a row. If this happens, we
       // want to collapse them all into one SVGBase.TextSequence node
@@ -1087,7 +1087,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  endElement(String uri, String localName, String qName) throws SVGParseException
+   public void  endElement(String uri, String localName, String qName) throws SVGParseException
    {
       if (ignoring) {
          if (--ignoreDepth == 0) {
@@ -1161,7 +1161,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  endDocument()
+   public void  endDocument()
    {
       // Dump document
       if (BuildConfig.DEBUG)
@@ -1169,7 +1169,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  handleProcessingInstruction(String instruction, Map<String, String> attributes)
+   public void  handleProcessingInstruction(String instruction, Map<String, String> attributes)
    {
       if (instruction.equals(XML_STYLESHEET_PROCESSING_INSTRUCTION) && externalFileResolver != null)
       {
@@ -1201,7 +1201,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private Map<String,String>  parseProcessingInstructionAttributes(TextScanner scan)
+   public Map<String,String>  parseProcessingInstructionAttributes(TextScanner scan)
    {
       HashMap<String, String>  attributes = new HashMap<>();
 
@@ -1223,7 +1223,7 @@ class SVGParserImpl implements SVGParser
    //=========================================================================
 
 
-   private void  dumpNode(SVGBase.SvgObject elem, String indent)
+   public void  dumpNode(SVGBase.SvgObject elem, String indent)
    {
       if (!BuildConfig.DEBUG)
          return;
@@ -1237,7 +1237,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  debug(String format, Object... args)
+   public void  debug(String format, Object... args)
    {
       if (BuildConfig.DEBUG)
          Log.d(TAG, String.format(format, args));
@@ -1249,7 +1249,7 @@ class SVGParserImpl implements SVGParser
    //=========================================================================
    // <svg> element
 
-   private void  svg(Attributes attributes) throws SVGParseException
+   public void  svg(Attributes attributes) throws SVGParseException
    {
       debug("<svg>");
 
@@ -1270,7 +1270,7 @@ class SVGParserImpl implements SVGParser
    }
 
    
-   private void  parseAttributesSVG(SVGBase.Svg obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesSVG(SVGBase.Svg obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1307,7 +1307,7 @@ class SVGParserImpl implements SVGParser
    // <g> group element
 
 
-   private void  g(Attributes attributes) throws SVGParseException
+   public void  g(Attributes attributes) throws SVGParseException
    {
       debug("<g>");
 
@@ -1329,7 +1329,7 @@ class SVGParserImpl implements SVGParser
    // <defs> group element
 
 
-   private void  defs(Attributes attributes) throws SVGParseException
+   public void  defs(Attributes attributes) throws SVGParseException
    {
       debug("<defs>");
 
@@ -1350,7 +1350,7 @@ class SVGParserImpl implements SVGParser
    // <a> element
 
 
-   private void  a(Attributes attributes) throws SVGParseException
+   public void  a(Attributes attributes) throws SVGParseException
    {
       debug("<a>");
 
@@ -1369,7 +1369,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesA(SVGBase.A obj, Attributes attributes)
+   public void  parseAttributesA(SVGBase.A obj, Attributes attributes)
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1392,7 +1392,7 @@ class SVGParserImpl implements SVGParser
    // <use> element
 
 
-   private void  use(Attributes attributes) throws SVGParseException
+   public void  use(Attributes attributes) throws SVGParseException
    {
       debug("<use>");
 
@@ -1411,7 +1411,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesUse(SVGBase.Use obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesUse(SVGBase.Use obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1449,7 +1449,7 @@ class SVGParserImpl implements SVGParser
    // <image> element
 
 
-   private void  image(Attributes attributes) throws SVGParseException
+   public void  image(Attributes attributes) throws SVGParseException
    {
       debug("<image>");
 
@@ -1468,7 +1468,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesImage(SVGBase.Image obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesImage(SVGBase.Image obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1509,7 +1509,7 @@ class SVGParserImpl implements SVGParser
    // <path> element
 
 
-   private void  path(Attributes attributes) throws SVGParseException
+   public void  path(Attributes attributes) throws SVGParseException
    {
       debug("<path>");
 
@@ -1527,7 +1527,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesPath(SVGBase.Path obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesPath(SVGBase.Path obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1553,7 +1553,7 @@ class SVGParserImpl implements SVGParser
    // <rect> element
 
 
-   private void  rect(Attributes attributes) throws SVGParseException
+   public void  rect(Attributes attributes) throws SVGParseException
    {
       debug("<rect>");
 
@@ -1571,7 +1571,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesRect(SVGBase.Rect obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesRect(SVGBase.Rect obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1615,7 +1615,7 @@ class SVGParserImpl implements SVGParser
    // <circle> element
 
 
-   private void  circle(Attributes attributes) throws SVGParseException
+   public void  circle(Attributes attributes) throws SVGParseException
    {
       debug("<circle>");
 
@@ -1633,7 +1633,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesCircle(SVGBase.Circle obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesCircle(SVGBase.Circle obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1662,7 +1662,7 @@ class SVGParserImpl implements SVGParser
    // <ellipse> element
 
 
-   private void  ellipse(Attributes attributes) throws SVGParseException
+   public void  ellipse(Attributes attributes) throws SVGParseException
    {
       debug("<ellipse>");
 
@@ -1680,7 +1680,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesEllipse(SVGBase.Ellipse obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesEllipse(SVGBase.Ellipse obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1714,7 +1714,7 @@ class SVGParserImpl implements SVGParser
    // <line> element
 
 
-   private void  line(Attributes attributes) throws SVGParseException
+   public void  line(Attributes attributes) throws SVGParseException
    {
       debug("<line>");
 
@@ -1732,7 +1732,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesLine(SVGBase.Line obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesLine(SVGBase.Line obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1762,7 +1762,7 @@ class SVGParserImpl implements SVGParser
    // <polyline> element
 
 
-   private void  polyline(Attributes attributes) throws SVGParseException
+   public void  polyline(Attributes attributes) throws SVGParseException
    {
       debug("<polyline>");
 
@@ -1783,7 +1783,7 @@ class SVGParserImpl implements SVGParser
    /*
     *  Parse the "points" attribute. Used by both <polyline> and <polygon>.
     */
-   private void  parseAttributesPolyLine(SVGBase.PolyLine obj, Attributes attributes, String tag) throws SVGParseException
+   public void  parseAttributesPolyLine(SVGBase.PolyLine obj, Attributes attributes, String tag) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1819,7 +1819,7 @@ class SVGParserImpl implements SVGParser
    // <polygon> element
 
 
-   private void  polygon(Attributes attributes) throws SVGParseException
+   public void  polygon(Attributes attributes) throws SVGParseException
    {
       debug("<polygon>");
 
@@ -1841,7 +1841,7 @@ class SVGParserImpl implements SVGParser
    // <text> element
 
 
-   private void  text(Attributes attributes) throws SVGParseException
+   public void  text(Attributes attributes) throws SVGParseException
    {
       debug("<text>");
 
@@ -1860,7 +1860,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesTextPosition(TextPositionedContainer obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesTextPosition(TextPositionedContainer obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1890,7 +1890,7 @@ class SVGParserImpl implements SVGParser
    // <tspan> element
 
 
-   private void  tspan(Attributes attributes) throws SVGParseException
+   public void  tspan(Attributes attributes) throws SVGParseException
    {
       debug("<tspan>");
 
@@ -1918,7 +1918,7 @@ class SVGParserImpl implements SVGParser
    // <tref> element
 
 
-   private void  tref(Attributes attributes) throws SVGParseException
+   public void  tref(Attributes attributes) throws SVGParseException
    {
       debug("<tref>");
 
@@ -1941,7 +1941,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesTRef(SVGBase.TRef obj, Attributes attributes)
+   public void  parseAttributesTRef(SVGBase.TRef obj, Attributes attributes)
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -1964,7 +1964,7 @@ class SVGParserImpl implements SVGParser
    // <switch> element
 
 
-   private void  zwitch(Attributes attributes) throws SVGParseException
+   public void  zwitch(Attributes attributes) throws SVGParseException
    {
       debug("<switch>");
 
@@ -1982,7 +1982,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesConditional(SVGBase.SvgConditional obj, Attributes attributes)
+   public void  parseAttributesConditional(SVGBase.SvgConditional obj, Attributes attributes)
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2017,7 +2017,7 @@ class SVGParserImpl implements SVGParser
    // <symbol> element
 
 
-   private void  symbol(Attributes attributes) throws SVGParseException
+   public void  symbol(Attributes attributes) throws SVGParseException
    {
       debug("<symbol>");
 
@@ -2039,7 +2039,7 @@ class SVGParserImpl implements SVGParser
    // <marker> element
 
 
-   private void  marker(Attributes attributes) throws SVGParseException
+   public void  marker(Attributes attributes) throws SVGParseException
    {
       debug("<marker>");
 
@@ -2058,7 +2058,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesMarker(SVGBase.Marker obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesMarker(SVGBase.Marker obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2108,7 +2108,7 @@ class SVGParserImpl implements SVGParser
    // <linearGradient> element
 
 
-   private void  linearGradient(Attributes attributes) throws SVGParseException
+   public void  linearGradient(Attributes attributes) throws SVGParseException
    {
       debug("<linearGradient>");
 
@@ -2126,7 +2126,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesGradient(SVGBase.GradientElement obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesGradient(SVGBase.GradientElement obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2166,7 +2166,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesLinearGradient(SVGBase.SvgLinearGradient obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesLinearGradient(SVGBase.SvgLinearGradient obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2196,7 +2196,7 @@ class SVGParserImpl implements SVGParser
    // <radialGradient> element
 
 
-   private void  radialGradient(Attributes attributes) throws SVGParseException
+   public void  radialGradient(Attributes attributes) throws SVGParseException
    {
       debug("<radialGradient>");
 
@@ -2214,7 +2214,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesRadialGradient(SVGBase.SvgRadialGradient obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesRadialGradient(SVGBase.SvgRadialGradient obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2249,7 +2249,7 @@ class SVGParserImpl implements SVGParser
    // Gradient <stop> element
 
 
-   private void  stop(Attributes attributes) throws SVGParseException
+   public void  stop(Attributes attributes) throws SVGParseException
    {
       debug("<stop>");
 
@@ -2268,7 +2268,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesStop(SVGBase.Stop obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesStop(SVGBase.Stop obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2286,7 +2286,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private Float  parseGradientOffset(String val) throws SVGParseException
+   public Float  parseGradientOffset(String val) throws SVGParseException
    {
       if (val.length() == 0)
          throw new SVGParseException("Invalid offset value in <stop> (empty string)");
@@ -2315,7 +2315,7 @@ class SVGParserImpl implements SVGParser
    // <solidColor> element
 
 
-   private void  solidColor(Attributes attributes) throws SVGParseException
+   public void  solidColor(Attributes attributes) throws SVGParseException
    {
       debug("<solidColor>");
 
@@ -2335,7 +2335,7 @@ class SVGParserImpl implements SVGParser
    // <clipPath> element
 
 
-   private void  clipPath(Attributes attributes) throws SVGParseException
+   public void  clipPath(Attributes attributes) throws SVGParseException
    {
       debug("<clipPath>");
 
@@ -2354,7 +2354,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesClipPath(SVGBase.ClipPath obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesClipPath(SVGBase.ClipPath obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2382,7 +2382,7 @@ class SVGParserImpl implements SVGParser
    // <textPath> element
 
 
-   private void textPath(Attributes attributes) throws SVGParseException
+   public void textPath(Attributes attributes) throws SVGParseException
    {
       debug("<textPath>");
 
@@ -2404,7 +2404,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesTextPath(SVGBase.TextPath obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesTextPath(SVGBase.TextPath obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2429,7 +2429,7 @@ class SVGParserImpl implements SVGParser
    // <pattern> element
 
 
-   private void pattern(Attributes attributes) throws SVGParseException
+   public void pattern(Attributes attributes) throws SVGParseException
    {
       debug("<pattern>");
 
@@ -2448,7 +2448,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesPattern(SVGBase.Pattern obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesPattern(SVGBase.Pattern obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2507,7 +2507,7 @@ class SVGParserImpl implements SVGParser
    // <view> element
 
 
-   private void  view(Attributes attributes) throws SVGParseException
+   public void  view(Attributes attributes) throws SVGParseException
    {
       debug("<view>");
 
@@ -2528,7 +2528,7 @@ class SVGParserImpl implements SVGParser
    // <mask> element
 
 
-   private void mask(Attributes attributes) throws SVGParseException
+   public void mask(Attributes attributes) throws SVGParseException
    {
       debug("<mask>");
 
@@ -2546,7 +2546,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesMask(SVGBase.Mask obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesMask(SVGBase.Mask obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2599,7 +2599,7 @@ class SVGParserImpl implements SVGParser
    //=========================================================================
 
 
-   private void  parseAttributesCore(SvgElementBase obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesCore(SvgElementBase obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2627,7 +2627,7 @@ class SVGParserImpl implements SVGParser
    /*
     * Parse the style attributes for an element.
     */
-   private void  parseAttributesStyle(SvgElementBase obj, Attributes attributes)
+   public void  parseAttributesStyle(SvgElementBase obj, Attributes attributes)
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2660,7 +2660,7 @@ class SVGParserImpl implements SVGParser
    /*
     * Parse the 'style' attribute.
     */
-   private static void  parseStyle(SvgElementBase obj, String style)
+   public static void  parseStyle(SvgElementBase obj, String style)
    {
       CSSTextScanner  scan = new CSSTextScanner(PATTERN_BLOCK_COMMENTS.matcher(style).replaceAll(""));  // regex strips block comments
 
@@ -2689,7 +2689,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesViewBox(SVGBase.SvgViewBoxContainer obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesViewBox(SVGBase.SvgViewBoxContainer obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2709,7 +2709,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseAttributesTransform(SVGBase.HasTransform obj, Attributes attributes) throws SVGParseException
+   public void  parseAttributesTransform(SVGBase.HasTransform obj, Attributes attributes) throws SVGParseException
    {
       for (int i=0; i<attributes.getLength(); i++)
       {
@@ -2721,7 +2721,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private Matrix  parseTransformList(String val) throws SVGParseException
+   public Matrix  parseTransformList(String val) throws SVGParseException
    {
       Matrix  matrix = new Matrix();
 
@@ -2890,7 +2890,7 @@ class SVGParserImpl implements SVGParser
    /*
     * Parse a list of Length/Coords
     */
-   private static List<Length>  parseLengthList(String val) throws SVGParseException
+   public static List<Length>  parseLengthList(String val) throws SVGParseException
    {
       if (val.length() == 0)
          throw new SVGParseException("Invalid length list (empty string)");
@@ -2926,7 +2926,7 @@ class SVGParserImpl implements SVGParser
       return parseFloat(val, 0, len);
    }
 
-   private static float  parseFloat(String val, int offset, int len) throws SVGParseException
+   public static float  parseFloat(String val, int offset, int len) throws SVGParseException
    {
       NumberParser np = new NumberParser();
       float  num = np.parseNumber(val, offset, len);
@@ -2955,7 +2955,7 @@ class SVGParserImpl implements SVGParser
    /*
     * Parse a viewBox attribute.
     */
-   private static Box  parseViewBox(String val) throws SVGParseException
+   public static Box  parseViewBox(String val) throws SVGParseException
    {
       TextScanner scan = new TextScanner(val);
       scan.skipWhitespace();
@@ -2982,7 +2982,7 @@ class SVGParserImpl implements SVGParser
    /*
     * Parse a preserveAspectRation attribute
     */
-   private static void  parsePreserveAspectRatio(SVGBase.SvgPreserveAspectRatioContainer obj, String val) throws SVGParseException
+   public static void  parsePreserveAspectRatio(SVGBase.SvgPreserveAspectRatioContainer obj, String val) throws SVGParseException
    {
       obj.preserveAspectRatio = PreserveAspectRatio.of(val);
    }
@@ -3016,7 +3016,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private static SvgPaint parseColourSpecifer(String val)
+   public static SvgPaint parseColourSpecifer(String val)
    {
       switch (val) {
          case NONE:
@@ -3190,14 +3190,14 @@ class SVGParserImpl implements SVGParser
 
 
    // Clamp a float to the range 0..255
-   private static int  clamp255(float val)
+   public static int  clamp255(float val)
    {
       return (val < 0) ? 0 : (val > 255) ? 255 : Math.round(val);
    }
 
 
    // Hue (degrees), saturation [0, 100], lightness [0, 100]
-   private static int  hslToRgb(float hue, float sat, float light)
+   public static int  hslToRgb(float hue, float sat, float light)
    {
       hue = (hue >= 0f) ? hue % 360f : (hue % 360f) + 360f;  // positive modulo (ie. -10 => 350)
       hue /= 60f;    // [0, 360] -> [0, 6]
@@ -3218,7 +3218,7 @@ class SVGParserImpl implements SVGParser
       return clamp255(r * 256f)<<16 | clamp255(g * 256f)<<8 | clamp255(b * 256f);
    }
 
-   private static float  hueToRgb(float t1, float t2, float hue) {
+   public static float  hueToRgb(float t1, float t2, float hue) {
       if (hue < 0f) hue += 6f;
       if (hue >= 6f) hue -= 6f;
 
@@ -3230,7 +3230,7 @@ class SVGParserImpl implements SVGParser
 
 
    // Parse a colour component value (0..255 or 0%-100%)
-   private static Colour  parseColourKeyword(String nameLowerCase)
+   public static Colour  parseColourKeyword(String nameLowerCase)
    {
       Integer  col = ColourKeywords.get(nameLowerCase);
       return (col == null) ? Colour.BLACK : new Colour(col);
@@ -3582,7 +3582,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private static Length parseLengthOrAuto(TextScanner scan)
+   public static Length parseLengthOrAuto(TextScanner scan)
    {
       if (scan.consume("auto"))
          return Length.ZERO;
@@ -3899,7 +3899,7 @@ class SVGParserImpl implements SVGParser
    
    // Parse the attribute that declares the list of SVG features that must be
    // supported if we are to render this element
-   private static Set<String>  parseRequiredFeatures(String val)
+   public static Set<String>  parseRequiredFeatures(String val)
    {
       TextScanner      scan = new TextScanner(val);
       HashSet<String>  result = new HashSet<>();
@@ -3923,7 +3923,7 @@ class SVGParserImpl implements SVGParser
 
    // Parse the attribute that declares the list of languages, one of which
    // must be supported if we are to render this element
-   private static Set<String>  parseSystemLanguage(String val)
+   public static Set<String>  parseSystemLanguage(String val)
    {
       TextScanner      scan = new TextScanner(val);
       HashSet<String>  result = new HashSet<>();
@@ -3946,7 +3946,7 @@ class SVGParserImpl implements SVGParser
 
    // Parse the attribute that declares the list of MIME types that must be
    // supported if we are to render this element
-   private static Set<String>  parseRequiredFormats(String val)
+   public static Set<String>  parseRequiredFormats(String val)
    {
       TextScanner      scan = new TextScanner(val);
       HashSet<String>  result = new HashSet<>();
@@ -3980,7 +3980,7 @@ class SVGParserImpl implements SVGParser
    //=========================================================================
 
 
-   private void  style(Attributes attributes) throws SVGParseException
+   public void  style(Attributes attributes) throws SVGParseException
    {
       debug("<style>");
 
@@ -4016,7 +4016,7 @@ class SVGParserImpl implements SVGParser
    }
 
 
-   private void  parseCSSStyleSheet(String sheet)
+   public void  parseCSSStyleSheet(String sheet)
    {
       CSSParser  cssp = new CSSParser(MediaType.screen, CSSParser.Source.Document, externalFileResolver);
       svgDocument.addCSSRules(cssp.parse(sheet));

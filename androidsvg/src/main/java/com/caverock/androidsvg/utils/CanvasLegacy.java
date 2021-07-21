@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 public class CanvasLegacy {
     public static final int MATRIX_SAVE_FLAG;
 
-    private static final Method SAVE;
+    public static final Method SAVE;
 
     static {
         try {
@@ -31,13 +31,13 @@ public class CanvasLegacy {
         }
     }
 
-    private static RuntimeException sneakyThrow(Throwable t) {
+    public static RuntimeException sneakyThrow(Throwable t) {
         if (t == null) throw new NullPointerException("t");
         return CanvasLegacy.sneakyThrow0(t);
     }
 
     @SuppressWarnings("unchecked")
-    private static <T extends Throwable> T sneakyThrow0(Throwable t) throws T {
+    public static <T extends Throwable> T sneakyThrow0(Throwable t) throws T {
         throw (T) t;
     }
 }

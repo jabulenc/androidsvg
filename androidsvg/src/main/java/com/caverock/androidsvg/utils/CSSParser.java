@@ -40,23 +40,23 @@ import java.util.Map;
  */
 public class CSSParser
 {
-   private static final String  TAG = "CSSParser";
+   public static final String  TAG = "CSSParser";
 
    static final String  CSS_MIME_TYPE = "text/css";
 
    static final String  ID = "id";
    static final String  CLASS = "class";
 
-   private static final int SPECIFICITY_ID_ATTRIBUTE             = 1000000;
-   private static final int SPECIFICITY_ATTRIBUTE_OR_PSEUDOCLASS = 1000;
-   private static final int SPECIFICITY_ELEMENT_OR_PSEUDOELEMENT = 1;
+   public static final int SPECIFICITY_ID_ATTRIBUTE             = 1000000;
+   public static final int SPECIFICITY_ATTRIBUTE_OR_PSEUDOCLASS = 1000;
+   public static final int SPECIFICITY_ELEMENT_OR_PSEUDOELEMENT = 1;
 
-   private MediaType  deviceMediaType;
-   private Source     source;    // Where these rules came from (Parser or RenderOptions)
+   public MediaType  deviceMediaType;
+   public Source     source;    // Where these rules came from (Parser or RenderOptions)
 
-   private SVGExternalFileResolver externalFileResolver;
+   public SVGExternalFileResolver externalFileResolver;
 
-   private boolean  inMediaRule = false;
+   public boolean  inMediaRule = false;
 
 
    @SuppressWarnings("unused")
@@ -128,7 +128,7 @@ public class CSSParser
       // in-range, out-of-range, required, optional, user-invalid, nth-col, nth-last-col
       UNSUPPORTED;
 
-      private static final Map<String, PseudoClassIdents> cache = new HashMap<>();
+      public static final Map<String, PseudoClassIdents> cache = new HashMap<>();
 
       static {
          for (PseudoClassIdents attr : values()) {
@@ -150,7 +150,7 @@ public class CSSParser
    }
 
 
-   private static class Attrib
+   public static class Attrib
    {
       final public String    name;
       final        AttribOp  operation;
@@ -164,7 +164,7 @@ public class CSSParser
       }
    }
 
-   static class SimpleSelector
+   public static class SimpleSelector
    {
       Combinator         combinator;
       String             tag;       // null means "*"
@@ -222,7 +222,7 @@ public class CSSParser
 
    public static class  Ruleset
    {
-      private List<Rule>  rules = null;
+      public List<Rule>  rules = null;
 
       // Add a rule to the ruleset. The position at which it is inserted is determined by its specificity value.
       void  add(Rule rule)
@@ -325,7 +325,7 @@ public class CSSParser
    }
 
 
-   static class Selector
+   public static class Selector
    {
       List<SimpleSelector>  simpleSelectors = null;
       int                   specificity = 0;
@@ -428,7 +428,7 @@ public class CSSParser
    //==============================================================================
 
 
-   private static void  warn(String format, Object... args)
+   public static void  warn(String format, Object... args)
    {
       Log.w(TAG, String.format(format, args));
    }
@@ -453,7 +453,7 @@ public class CSSParser
 
 
    // Returns true if 'deviceMediaType' matches one of the media types in 'mediaList'
-   private static boolean mediaMatches(List<MediaType> mediaList, MediaType rendererMediaType)
+   public static boolean mediaMatches(List<MediaType> mediaList, MediaType rendererMediaType)
    {
       if (mediaList.size() == 0) // No specific media specified, so match all
          return true;
@@ -465,7 +465,7 @@ public class CSSParser
    }
 
 
-   private static List<MediaType> parseMediaList(CSSTextScanner scan)
+   public static List<MediaType> parseMediaList(CSSTextScanner scan)
    {
       ArrayList<MediaType>  typeList = new ArrayList<>();
       while (!scan.empty()) {
@@ -485,7 +485,7 @@ public class CSSParser
    }
 
 
-   private void  parseAtRule(Ruleset ruleset, CSSTextScanner scan) throws CSSParseException
+   public void  parseAtRule(Ruleset ruleset, CSSTextScanner scan) throws CSSParseException
    {
       String  atKeyword = scan.nextIdentifier();
       scan.skipWhitespace();
@@ -543,7 +543,7 @@ public class CSSParser
 
 
    // Skip an unsupported at-rule: "ignore everything up to and including the next semicolon or block".
-   private void  skipAtRule(CSSTextScanner scan)
+   public void  skipAtRule(CSSTextScanner scan)
    {
       int depth = 0;
       while (!scan.empty())
@@ -561,7 +561,7 @@ public class CSSParser
    }
 
 
-   private Ruleset  parseRuleset(CSSTextScanner scan)
+   public Ruleset  parseRuleset(CSSTextScanner scan)
    {
       Ruleset  ruleset = new Ruleset(); 
       try
@@ -594,7 +594,7 @@ public class CSSParser
    }
 
 
-   private boolean  parseRule(Ruleset ruleset, CSSTextScanner scan) throws CSSParseException
+   public boolean  parseRule(Ruleset ruleset, CSSTextScanner scan) throws CSSParseException
    {
       List<Selector>  selectors = scan.nextSelectorGroup();
       if (selectors != null && !selectors.isEmpty())
@@ -617,7 +617,7 @@ public class CSSParser
 
 
    // Parse a list of CSS declarations
-   private Style  parseDeclarations(CSSTextScanner scan) throws CSSParseException
+   public Style  parseDeclarations(CSSTextScanner scan) throws CSSParseException
    {
       Style  ruleStyle = new Style();
       do {
@@ -675,7 +675,7 @@ public class CSSParser
    // Matching a selector against an object/element
 
 
-   static class RuleMatchContext
+   public static class RuleMatchContext
    {
       SvgElementBase  targetElement;    // From RenderOptions.target() and used for the :target selector
 
@@ -715,7 +715,7 @@ public class CSSParser
    }
 
 
-   private static boolean  ruleMatch(RuleMatchContext ruleMatchContext, Selector selector, int selPartPos, List<SvgContainer> ancestors, int ancestorsPos, SvgElementBase obj)
+   public static boolean  ruleMatch(RuleMatchContext ruleMatchContext, Selector selector, int selPartPos, List<SvgContainer> ancestors, int ancestorsPos, SvgElementBase obj)
    {
       // We start at the last part of the simpleSelectors and loop back through the parts
       // Get the next simpleSelectors part
@@ -751,7 +751,7 @@ public class CSSParser
    }
 
 
-   private static boolean  ruleMatchOnAncestors(RuleMatchContext ruleMatchContext, Selector selector, int selPartPos, List<SvgContainer> ancestors, int ancestorsPos)
+   public static boolean  ruleMatchOnAncestors(RuleMatchContext ruleMatchContext, Selector selector, int selPartPos, List<SvgContainer> ancestors, int ancestorsPos)
    {
       SimpleSelector  sel = selector.get(selPartPos);
       SvgElementBase  obj = (SvgElementBase) ancestors.get(ancestorsPos);
@@ -786,7 +786,7 @@ public class CSSParser
    }
 
 
-   private static int getChildPosition(List<SvgContainer> ancestors, int ancestorsPos, SvgElementBase obj)
+   public static int getChildPosition(List<SvgContainer> ancestors, int ancestorsPos, SvgElementBase obj)
    {
       if (ancestorsPos < 0)  // Has no parent, so must be only child of document
          return 0;
@@ -803,7 +803,7 @@ public class CSSParser
    }
 
 
-   private static boolean selectorMatch(RuleMatchContext ruleMatchContext, SimpleSelector sel, SvgElementBase obj)
+   public static boolean selectorMatch(RuleMatchContext ruleMatchContext, SimpleSelector sel, SvgElementBase obj)
    {
       // Check tag name. tag==null means tag is "*" which matches everything.
       if (sel.tag != null && !sel.tag.equals(obj.getNodeName().toLowerCase(Locale.US)))
@@ -860,13 +860,13 @@ public class CSSParser
    }
 
 
-   static class  PseudoClassAnPlusB  implements PseudoClass
+   public static class  PseudoClassAnPlusB  implements PseudoClass
    {
-      private final int      a;
-      private final int      b;
-      private final boolean  isFromStart;
-      private final boolean  isOfType;
-      private final String   nodeName;  // The node name for when isOfType is true
+      public final int      a;
+      public final int      b;
+      public final boolean  isFromStart;
+      public final boolean  isOfType;
+      public final String   nodeName;  // The node name for when isOfType is true
 
 
       PseudoClassAnPlusB(int a, int b, boolean isFromStart, boolean isOfType, String nodeName)
@@ -929,10 +929,10 @@ public class CSSParser
    }
 
 
-   static class  PseudoClassOnlyChild  implements PseudoClass
+   public static class  PseudoClassOnlyChild  implements PseudoClass
    {
-      private final boolean  isOfType;
-      private final String   nodeName;  // The node name for when isOfType is true
+      public final boolean  isOfType;
+      public final String   nodeName;  // The node name for when isOfType is true
 
 
       public PseudoClassOnlyChild(boolean isOfType, String nodeName)
@@ -975,7 +975,7 @@ public class CSSParser
    }
 
 
-   static class  PseudoClassRoot  implements PseudoClass
+   public static class  PseudoClassRoot  implements PseudoClass
    {
       @Override
       public boolean matches(RuleMatchContext ruleMatchContext, SvgElementBase obj)
@@ -992,7 +992,7 @@ public class CSSParser
    }
 
 
-   static class  PseudoClassEmpty  implements PseudoClass
+   public static class  PseudoClassEmpty  implements PseudoClass
    {
       @Override
       public boolean matches(RuleMatchContext ruleMatchContext, SvgElementBase obj)
@@ -1017,9 +1017,9 @@ public class CSSParser
    }
 
 
-   static class  PseudoClassNot  implements PseudoClass
+   public static class  PseudoClassNot  implements PseudoClass
    {
-      private final List<Selector>  selectorGroup;
+      public final List<Selector>  selectorGroup;
 
       PseudoClassNot(List<Selector> selectorGroup)
       {
@@ -1058,7 +1058,7 @@ public class CSSParser
    }
 
 
-   static class  PseudoClassTarget  implements PseudoClass
+   public static class  PseudoClassTarget  implements PseudoClass
    {
       @Override
       public boolean matches(RuleMatchContext ruleMatchContext, SvgElementBase obj)
@@ -1078,9 +1078,9 @@ public class CSSParser
    }
 
 
-   static class  PseudoClassNotSupported  implements PseudoClass
+   public static class  PseudoClassNotSupported  implements PseudoClass
    {
-      private final String  clazz;
+      public final String  clazz;
 
       PseudoClassNotSupported(String clazz)
       {

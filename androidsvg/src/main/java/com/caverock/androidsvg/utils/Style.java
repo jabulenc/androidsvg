@@ -176,7 +176,7 @@ public class  Style implements Cloneable
    static final long SPECIFIED_WORD_SPACING               = (1L<<53);
 
    // Flags for the settings that are applied to reset the root style
-   private static final long SPECIFIED_RESET = 0xffffffffffffffffL &
+   public static final long SPECIFIED_RESET = 0xffffffffffffffffL &
                            ~(SPECIFIED_FONT_VARIANT_LIGATURES  |
                              SPECIFIED_FONT_VARIANT_POSITION   |
                              SPECIFIED_FONT_VARIANT_CAPS       |
@@ -273,7 +273,7 @@ public class  Style implements Cloneable
       luminosity,
       UNSUPPORTED;
 
-      private static final Map<String, CSSBlendMode> cache = new HashMap<>();
+      public static final Map<String, CSSBlendMode> cache = new HashMap<>();
 
       static {
          for (CSSBlendMode mode : values()) {

@@ -30,32 +30,32 @@ public class CSSFontFeatureSettings
    public static final CSSFontFeatureSettings  ERROR = new CSSFontFeatureSettings((HashMap<String, Integer>) null);
 
    static final String  FONT_VARIANT_NORMAL = "normal";
-   private static final String  FONT_VARIANT_AUTO = "auto";
-   private static final String  FONT_VARIANT_NONE = "none";
+   public static final String  FONT_VARIANT_AUTO = "auto";
+   public static final String  FONT_VARIANT_NONE = "none";
 
-   private static final String  FEATURE_ON  = "on";
-   private static final String  FEATURE_OFF = "off";
+   public static final String  FEATURE_ON  = "on";
+   public static final String  FEATURE_OFF = "off";
 
-   private static final int  VALUE_ON  = 1;
-   private static final int  VALUE_OFF = 0;
+   public static final int  VALUE_ON  = 1;
+   public static final int  VALUE_OFF = 0;
 
-   private static final String  TOKEN_ERROR = "ERR";
+   public static final String  TOKEN_ERROR = "ERR";
 
    // For font-kerning
    public static final String FEATURE_KERN = "kern";
 
    // For font-variant-ligatures
    static CSSFontFeatureSettings  LIGATURES_NORMAL = null;
-   private static CSSFontFeatureSettings LIGATURES_ALL_OFF = null;
+   public static CSSFontFeatureSettings LIGATURES_ALL_OFF = null;
 
-   private static final String  FONT_VARIANT_COMMON_LIGATURES = "common-ligatures";
-   private static final String  FONT_VARIANT_NO_COMMON_LIGATURES = "no-common-ligatures";
-   private static final String  FONT_VARIANT_DISCRETIONARY_LIGATURES = "discretionary-ligatures";
-   private static final String  FONT_VARIANT_NO_DISCRETIONARY_LIGATURES = "no-discretionary-ligatures";
-   private static final String  FONT_VARIANT_HISTORICAL_LIGATURES = "historical-ligatures";
-   private static final String  FONT_VARIANT_NO_HISTORICAL_LIGATURES = "no-historical-ligatures";
-   private static final String  FONT_VARIANT_CONTEXTUAL_LIGATURES = "contextual";
-   private static final String  FONT_VARIANT_NO_CONTEXTUAL_LIGATURES = "no-contextual";
+   public static final String  FONT_VARIANT_COMMON_LIGATURES = "common-ligatures";
+   public static final String  FONT_VARIANT_NO_COMMON_LIGATURES = "no-common-ligatures";
+   public static final String  FONT_VARIANT_DISCRETIONARY_LIGATURES = "discretionary-ligatures";
+   public static final String  FONT_VARIANT_NO_DISCRETIONARY_LIGATURES = "no-discretionary-ligatures";
+   public static final String  FONT_VARIANT_HISTORICAL_LIGATURES = "historical-ligatures";
+   public static final String  FONT_VARIANT_NO_HISTORICAL_LIGATURES = "no-historical-ligatures";
+   public static final String  FONT_VARIANT_CONTEXTUAL_LIGATURES = "contextual";
+   public static final String  FONT_VARIANT_NO_CONTEXTUAL_LIGATURES = "no-contextual";
 
    public static final String FEATURE_CLIG = "clig";
    public static final String FEATURE_LIGA = "liga";
@@ -66,41 +66,41 @@ public class CSSFontFeatureSettings
    // For font-variant-position
    static CSSFontFeatureSettings  POSITION_ALL_OFF = null;
 
-   private static final String  FONT_VARIANT_SUB = "sub";
-   private static final String  FONT_VARIANT_SUPER = "super";
+   public static final String  FONT_VARIANT_SUB = "sub";
+   public static final String  FONT_VARIANT_SUPER = "super";
 
-   private static final String  FEATURE_SUBS = "subs";
-   private static final String  FEATURE_SUPS = "sups";
+   public static final String  FEATURE_SUBS = "subs";
+   public static final String  FEATURE_SUPS = "sups";
 
    // For font-variant-caps
    static CSSFontFeatureSettings          CAPS_ALL_OFF = null;
-   private static CSSFontFeatureSettings  CAPS_SMALL_CAPS = null;
+   public static CSSFontFeatureSettings  CAPS_SMALL_CAPS = null;
 
    static final String  FONT_VARIANT_SMALL_CAPS = "small-caps";
-   private static final String  FONT_VARIANT_ALL_SMALL_CAPS = "all-small-caps";
-   private static final String  FONT_VARIANT_PETITE_CAPS = "petite-caps";
-   private static final String  FONT_VARIANT_ALL_PETITE_CAPS = "all-petite-caps";
-   private static final String  FONT_VARIANT_UNICASE = "unicase";
-   private static final String  FONT_VARIANT_TITLING_CAPS = "titling-caps";
+   public static final String  FONT_VARIANT_ALL_SMALL_CAPS = "all-small-caps";
+   public static final String  FONT_VARIANT_PETITE_CAPS = "petite-caps";
+   public static final String  FONT_VARIANT_ALL_PETITE_CAPS = "all-petite-caps";
+   public static final String  FONT_VARIANT_UNICASE = "unicase";
+   public static final String  FONT_VARIANT_TITLING_CAPS = "titling-caps";
 
-   private static final String  FEATURE_SMCP = "smcp";
-   private static final String  FEATURE_C2SC = "c2sc";
-   private static final String  FEATURE_PCAP = "pcap";
-   private static final String  FEATURE_C2PC = "c2pc";
-   private static final String  FEATURE_UNIC = "unic";
-   private static final String  FEATURE_TITL = "titl";
+   public static final String  FEATURE_SMCP = "smcp";
+   public static final String  FEATURE_C2SC = "c2sc";
+   public static final String  FEATURE_PCAP = "pcap";
+   public static final String  FEATURE_C2PC = "c2pc";
+   public static final String  FEATURE_UNIC = "unic";
+   public static final String  FEATURE_TITL = "titl";
 
    // For font-variant-numeric
    static CSSFontFeatureSettings  NUMERIC_ALL_OFF = null;
 
-   private static final String  FONT_VARIANT_LINING_NUMS = "lining-nums";
-   private static final String  FONT_VARIANT_OLDSTYLE_NUMS = "oldstyle-nums";
-   private static final String  FONT_VARIANT_PROPORTIONAL_NUMS = "proportional-nums";
-   private static final String  FONT_VARIANT_TABULAR_NUMS = "tabular-nums";
-   private static final String  FONT_VARIANT_DIAGONAL_FRACTIONS = "diagonal-fractions";
-   private static final String  FONT_VARIANT_STACKED_FRACTIONS = "stacked-fractions";
-   private static final String  FONT_VARIANT_ORDINAL = "ordinal";
-   private static final String  FONT_VARIANT_SLASHED_ZERO = "slashed-zero";
+   public static final String  FONT_VARIANT_LINING_NUMS = "lining-nums";
+   public static final String  FONT_VARIANT_OLDSTYLE_NUMS = "oldstyle-nums";
+   public static final String  FONT_VARIANT_PROPORTIONAL_NUMS = "proportional-nums";
+   public static final String  FONT_VARIANT_TABULAR_NUMS = "tabular-nums";
+   public static final String  FONT_VARIANT_DIAGONAL_FRACTIONS = "diagonal-fractions";
+   public static final String  FONT_VARIANT_STACKED_FRACTIONS = "stacked-fractions";
+   public static final String  FONT_VARIANT_ORDINAL = "ordinal";
+   public static final String  FONT_VARIANT_SLASHED_ZERO = "slashed-zero";
 
    public static final String FEATURE_LNUM = "lnum";
    public static final String FEATURE_ONUM = "onum";
@@ -114,15 +114,15 @@ public class CSSFontFeatureSettings
    // For font-variant-east-asian
    static CSSFontFeatureSettings  EAST_ASIAN_ALL_OFF = null;
 
-   private static final String  FONT_VARIANT_JIS78 = "jis78";
-   private static final String  FONT_VARIANT_JIS83 = "jis83";
-   private static final String  FONT_VARIANT_JIS90 = "jis90";
-   private static final String  FONT_VARIANT_JIS04 = "jis04";
-   private static final String  FONT_VARIANT_SIMPLIFIED = "simplified";
-   private static final String  FONT_VARIANT_TRADITIONAL = "traditional";
-   private static final String  FONT_VARIANT_FULL_WIDTH = "full-width";
-   private static final String  FONT_VARIANT_PROPORTIONAL_WIDTH = "proportional-width";
-   private static final String  FONT_VARIANT_RUBY = "ruby";
+   public static final String  FONT_VARIANT_JIS78 = "jis78";
+   public static final String  FONT_VARIANT_JIS83 = "jis83";
+   public static final String  FONT_VARIANT_JIS90 = "jis90";
+   public static final String  FONT_VARIANT_JIS04 = "jis04";
+   public static final String  FONT_VARIANT_SIMPLIFIED = "simplified";
+   public static final String  FONT_VARIANT_TRADITIONAL = "traditional";
+   public static final String  FONT_VARIANT_FULL_WIDTH = "full-width";
+   public static final String  FONT_VARIANT_PROPORTIONAL_WIDTH = "proportional-width";
+   public static final String  FONT_VARIANT_RUBY = "ruby";
 
    public static final String FEATURE_JP78 = "jp78";
    public static final String FEATURE_JP83 = "jp83";
@@ -135,10 +135,10 @@ public class CSSFontFeatureSettings
    public static final String FEATURE_RUBY = "ruby";
 
 
-   private final HashMap<String, Integer>  settings;
+   public final HashMap<String, Integer>  settings;
 
 
-   private static class FontFeatureEntry {
+   public static class FontFeatureEntry {
       String  name;
       int     val;
 
@@ -197,7 +197,7 @@ public class CSSFontFeatureSettings
       this.settings = new HashMap<>();
    }
 
-   private CSSFontFeatureSettings(HashMap<String, Integer> initialMap)
+   public CSSFontFeatureSettings(HashMap<String, Integer> initialMap)
    {
       this.settings = initialMap;
    }
@@ -277,7 +277,7 @@ public class CSSFontFeatureSettings
    }
 
 
-   private static FontFeatureEntry  nextFeatureEntry(TextScanner scan)
+   public static FontFeatureEntry  nextFeatureEntry(TextScanner scan)
    {
       scan.skipWhitespace();
       String name = scan.nextQuotedString();
@@ -318,7 +318,7 @@ public class CSSFontFeatureSettings
    }
 
 
-   private static List<String>  extractTokensAsList(String val)
+   public static List<String>  extractTokensAsList(String val)
    {
       TextScanner  scan = new TextScanner(val);
       scan.skipWhitespace();
@@ -341,7 +341,7 @@ public class CSSFontFeatureSettings
     *   3 if it contains both, or more than one of either,
     *   0 if it contains neither.
     */
-   private static int  containsWhich(List<String> tokens, String token1, String token2)
+   public static int  containsWhich(List<String> tokens, String token1, String token2)
    {
       if (tokens.remove(token1)) {
          return tokens.contains(token1) || tokens.contains(token2) ? 3 : 1;
@@ -358,7 +358,7 @@ public class CSSFontFeatureSettings
     *   2 if it contains more than one token1,
     *   0 if it doesn't contains token1.
     */
-   private static int  containsOnce(List<String> tokens, String token1)
+   public static int  containsOnce(List<String> tokens, String token1)
    {
       if (tokens.remove(token1)) {
          return tokens.contains(token1) ? 2 : 1;
@@ -371,7 +371,7 @@ public class CSSFontFeatureSettings
     * Checks haystack to see which needle is present (if any).  Returns the needle.
     * If there is more than one of the needles present, then returns null.
     */
-   private static String  containsOneOf(List<String> haystack, String... needles)
+   public static String  containsOneOf(List<String> haystack, String... needles)
    {
       String found = null;
       for (String needle: needles)
@@ -419,7 +419,7 @@ public class CSSFontFeatureSettings
    }
 
 
-   private static CSSFontFeatureSettings  parseVariantLigaturesSpecial(List<String> tokens)
+   public static CSSFontFeatureSettings  parseVariantLigaturesSpecial(List<String> tokens)
    {
       ensureLigaturesNone();
       CSSFontFeatureSettings  result = new CSSFontFeatureSettings(LIGATURES_ALL_OFF);
@@ -456,7 +456,7 @@ public class CSSFontFeatureSettings
    }
 
 
-   private void  addSettings(String feature1, String feature2, int onOrOff)
+   public void  addSettings(String feature1, String feature2, int onOrOff)
    {
       this.settings.put(feature1, onOrOff);
       this.settings.put(feature2, onOrOff);
@@ -482,7 +482,7 @@ public class CSSFontFeatureSettings
 
    // Used only by parseFontVariant()
    // Only looks for the values unique to this property
-   private static CSSFontFeatureSettings  parseVariantPositionSpecial(List<String> tokens)
+   public static CSSFontFeatureSettings  parseVariantPositionSpecial(List<String> tokens)
    {
       CSSFontFeatureSettings  result = new CSSFontFeatureSettings(POSITION_ALL_OFF);
       boolean                 found = false;
@@ -507,7 +507,7 @@ public class CSSFontFeatureSettings
       return setCapsFeature(result, val) ? result : null;
    }
 
-   private static boolean  setCapsFeature(CSSFontFeatureSettings result, String val)
+   public static boolean  setCapsFeature(CSSFontFeatureSettings result, String val)
    {
       switch (val)
       {
@@ -525,7 +525,7 @@ public class CSSFontFeatureSettings
 
    // Used only by parseFontVariant()
    // Only looks for the values unique to this property
-   private static CSSFontFeatureSettings  parseVariantCapsSpecial(List<String> tokens)
+   public static CSSFontFeatureSettings  parseVariantCapsSpecial(List<String> tokens)
    {
       CSSFontFeatureSettings  result = new CSSFontFeatureSettings(CAPS_ALL_OFF);
 
@@ -568,7 +568,7 @@ public class CSSFontFeatureSettings
    }
 
 
-   private static CSSFontFeatureSettings  parseVariantNumericSpecial(List<String> tokens)
+   public static CSSFontFeatureSettings  parseVariantNumericSpecial(List<String> tokens)
    {
       CSSFontFeatureSettings  result = new CSSFontFeatureSettings(NUMERIC_ALL_OFF);
       boolean                 found = false;
@@ -636,7 +636,7 @@ public class CSSFontFeatureSettings
    }
 
 
-   private static CSSFontFeatureSettings  parseVariantEastAsianSpecial(List<String> tokens)
+   public static CSSFontFeatureSettings  parseVariantEastAsianSpecial(List<String> tokens)
    {
       CSSFontFeatureSettings  result = new CSSFontFeatureSettings(EAST_ASIAN_ALL_OFF);
       boolean                 found = false;
@@ -776,7 +776,7 @@ public class CSSFontFeatureSettings
    //-----------------------------------------------------------------------------------------------
 
 
-   private static final CSSFontFeatureSettings  makeDefaultSettings()
+   public static final CSSFontFeatureSettings  makeDefaultSettings()
    {
       // See: https://www.w3.org/TR/css-fonts-3/#default-features
       CSSFontFeatureSettings result = new CSSFontFeatureSettings();
@@ -793,7 +793,7 @@ public class CSSFontFeatureSettings
    }
 
 
-   private static void  ensureLigaturesNone()
+   public static void  ensureLigaturesNone()
    {
       // all ligatures OFF
       if (LIGATURES_ALL_OFF != null)
@@ -808,7 +808,7 @@ public class CSSFontFeatureSettings
    }
 
 
-   private void  ensurePositionNormal()
+   public void  ensurePositionNormal()
    {
       // common and contextual ligatures ON; discretionary  and historical ligatures OFF
       if (POSITION_ALL_OFF == null) {

@@ -40,10 +40,10 @@ import java.util.Map;
  */
 public class PreserveAspectRatio
 {
-   private final Alignment  alignment;
-   private final Scale      scale;
+   public final Alignment  alignment;
+   public final Scale      scale;
 
-   private static final Map<String, Alignment> aspectRatioKeywords = new HashMap<>(10);
+   public static final Map<String, Alignment> aspectRatioKeywords = new HashMap<>(10);
 
 
    /**
@@ -279,7 +279,7 @@ public class PreserveAspectRatio
 
 
 
-   private static PreserveAspectRatio  parsePreserveAspectRatio(String val) throws SVGParseException
+   public static PreserveAspectRatio  parsePreserveAspectRatio(String val) throws SVGParseException
    {
       TextScanner scan = new TextScanner(val);
       scan.skipWhitespace();

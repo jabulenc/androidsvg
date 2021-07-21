@@ -42,9 +42,9 @@ import android.util.Log;
 
 public class SimpleAssetResolver extends SVGExternalFileResolver
 {
-   private static final String  TAG = "SimpleAssetResolver";
+   public static final String  TAG = "SimpleAssetResolver";
 
-   private AssetManager  assetManager;
+   public AssetManager  assetManager;
    
 
    @SuppressWarnings({"WeakerAccess", "unused"})
@@ -55,7 +55,7 @@ public class SimpleAssetResolver extends SVGExternalFileResolver
    }
 
 
-   private static final Set<String>  supportedFormats = new HashSet<>(8);
+   public static final Set<String>  supportedFormats = new HashSet<>(8);
 
    // Static initialiser
    static {
@@ -157,7 +157,7 @@ public class SimpleAssetResolver extends SVGExternalFileResolver
    /*
     * Read the contents of the asset whose name is given by "url" and return it as a String.
     */
-   private String getAssetAsString(String url)
+   public String getAssetAsString(String url)
    {
       InputStream is = null;
       //noinspection TryFinallyCanBeTryWithResources

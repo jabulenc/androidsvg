@@ -49,10 +49,10 @@ import android.widget.ImageView;
  */
 public class SVGImageView extends ImageView
 {
-   private SVG                  svg = null;
-   private final RenderOptions  renderOptions = new RenderOptions();
+   public SVG                  svg = null;
+   public final RenderOptions  renderOptions = new RenderOptions();
 
-   private static Method  setLayerTypeMethod = null;
+   public static Method  setLayerTypeMethod = null;
 
 
    static {
@@ -84,7 +84,7 @@ public class SVGImageView extends ImageView
    }
 
    
-   private void  init(AttributeSet attrs, int defStyle)
+   public void  init(AttributeSet attrs, int defStyle)
    {
       if (isInEditMode())
          return;
@@ -215,7 +215,7 @@ public class SVGImageView extends ImageView
    /*
     * Attempt to set a picture from a Uri. Return true if it worked.
     */
-   private boolean  internalSetImageURI(Uri uri)
+   public boolean  internalSetImageURI(Uri uri)
    {
       try
       {
@@ -231,7 +231,7 @@ public class SVGImageView extends ImageView
    }
 
 
-   private boolean  internalSetImageAsset(String filename)
+   public boolean  internalSetImageAsset(String filename)
    {
       try
       {
@@ -247,7 +247,7 @@ public class SVGImageView extends ImageView
    }
 
 
-   private void setFromString(String url)
+   public void setFromString(String url)
    {
       try {
          this.svg = SVG.getFromString(url);
@@ -263,9 +263,9 @@ public class SVGImageView extends ImageView
 
 
    @SuppressLint("StaticFieldLeak")
-   private class LoadResourceTask extends AsyncTask<Integer, Integer, SVG>
+   public class LoadResourceTask extends AsyncTask<Integer, Integer, SVG>
    {
-      private final Context  context;
+      public final Context  context;
 
       LoadResourceTask(Context context)
       {
@@ -295,7 +295,7 @@ public class SVGImageView extends ImageView
 
 
    @SuppressLint("StaticFieldLeak")
-   private class LoadURITask extends AsyncTask<InputStream, Integer, SVG>
+   public class LoadURITask extends AsyncTask<InputStream, Integer, SVG>
    {
       protected SVG  doInBackground(InputStream... is)
       {
@@ -332,7 +332,7 @@ public class SVGImageView extends ImageView
    /*
     * Use reflection to call an API 11 method from this library (which is configured with a minSdkVersion of 8)
     */
-   private void  setSoftwareLayerType()
+   public void  setSoftwareLayerType()
    {
       if (setLayerTypeMethod == null)
          return;
@@ -349,7 +349,7 @@ public class SVGImageView extends ImageView
    }
 
 
-   private void  doRender()
+   public void  doRender()
    {
       if (svg == null)
          return;

@@ -6,9 +6,9 @@ import java.util.Map;
 
 public class CSSFontVariationSettings
 {
-   private final HashMap<String, Float> settings;
+   public final HashMap<String, Float> settings;
 
-   private static final String  NORMAL = "normal";
+   public static final String  NORMAL = "normal";
 
    static final String  VARIATION_WEIGHT = "wght";
    static final String  VARIATION_ITALIC = "ital";
@@ -19,7 +19,7 @@ public class CSSFontVariationSettings
    static final Float  VARIATION_OBLIQUE_VALUE_ON = -14f;  // -14 degrees
 
 
-   private static class FontVariationEntry {
+   public static class FontVariationEntry {
       String  name;
       Float   val;
 
@@ -35,7 +35,7 @@ public class CSSFontVariationSettings
       this.settings = new HashMap<>();
    }
 
-   private CSSFontVariationSettings(HashMap<String, Float> initialMap)
+   public CSSFontVariationSettings(HashMap<String, Float> initialMap)
    {
       this.settings = initialMap;
    }
@@ -108,7 +108,7 @@ public class CSSFontVariationSettings
    }
 
 
-   private static CSSFontVariationSettings.FontVariationEntry nextFeatureEntry(TextScanner scan)
+   public static CSSFontVariationSettings.FontVariationEntry nextFeatureEntry(TextScanner scan)
    {
       scan.skipWhitespace();
       String name = scan.nextQuotedString();

@@ -59,7 +59,7 @@ public class CSSTextScanner extends TextScanner
    //   whitespace: (space or \t or newline)+
    //   newline: \n or \r\n or \r or \f
 
-   private int  scanForIdentifier()
+   public int  scanForIdentifier()
    {
       if (empty())
          return position;
@@ -232,7 +232,7 @@ public class CSSTextScanner extends TextScanner
    }
 
 
-   private static class  AnPlusB
+   public static class  AnPlusB
    {
       final public int a;
       final public int b;
@@ -244,7 +244,7 @@ public class CSSTextScanner extends TextScanner
    }
 
 
-   private AnPlusB  nextAnPlusB()
+   public AnPlusB  nextAnPlusB()
    {
       if (empty())
          return null;
@@ -320,7 +320,7 @@ public class CSSTextScanner extends TextScanner
     * Parse a list of identifiers from a pseudo class parameter set.
     * Eg. for :lang(en)
     */
-   private List<String>  nextIdentListParam()
+   public List<String>  nextIdentListParam()
    {
       if (empty())
          return null;
@@ -355,7 +355,7 @@ public class CSSTextScanner extends TextScanner
    /*
     * Parse a simpleSelectors group inside a pair of brackets.  For the :not pseudo class.
     */
-   private List<CSSParser.Selector>  nextPseudoNotParam() throws CSSParseException
+   public List<CSSParser.Selector>  nextPseudoNotParam() throws CSSParseException
    {
       if (empty())
          return null;
@@ -400,7 +400,7 @@ public class CSSTextScanner extends TextScanner
    /*
     * Parse a pseudo class (such as ":first-child")
     */
-   private void  parsePseudoClass(CSSParser.Selector selector, CSSParser.SimpleSelector selectorPart) throws CSSParseException
+   public void  parsePseudoClass(CSSParser.Selector selector, CSSParser.SimpleSelector selectorPart) throws CSSParseException
    {
       // skip pseudo
 //         int     pseudoStart = position;
@@ -511,7 +511,7 @@ public class CSSTextScanner extends TextScanner
    /*
     * The value (bar) part of "[foo="bar"]".
     */
-   private String  nextAttribValue()
+   public String  nextAttribValue()
    {
       if (empty())
          return null;
@@ -593,7 +593,7 @@ public class CSSTextScanner extends TextScanner
    }
 
 
-   private int  hexChar(int ch)
+   public int  hexChar(int ch)
    {
       if (ch >= '0' && ch <= '9')
          return (ch - (int)'0');

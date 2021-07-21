@@ -17,7 +17,7 @@ import com.caverock.androidsvg.utils.CSSBase;
  * </pre>
  */
 public class CSS extends CSSBase {
-    private CSS(String css)
+    public CSS(String css)
     {
         super(css);
     }

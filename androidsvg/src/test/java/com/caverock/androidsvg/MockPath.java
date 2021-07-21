@@ -19,8 +19,8 @@ import java.util.Locale;
 @Implements(Path.class)
 public class MockPath
 {
-   private ArrayList<String>  path = new ArrayList<>();
-   private ArrayList<Matrix>  transforms = null;
+   public ArrayList<String>  path = new ArrayList<>();
+   public ArrayList<Matrix>  transforms = null;
 
 
    @Implementation
@@ -112,7 +112,7 @@ public class MockPath
       return sb.toString();
    }
 
-   private void  formatMatrix(StringBuilder sb, Matrix matrix)
+   public void  formatMatrix(StringBuilder sb, Matrix matrix)
    {
       float[]  values = new float[9];
       matrix.getValues(values);
@@ -129,7 +129,7 @@ public class MockPath
       sb.append(num(values[5]));
    }
 
-   private static String  num(float f)
+   public static String  num(float f)
    {
       if (f == (long) f)
          return String.format("%d", (long) f);
@@ -137,7 +137,7 @@ public class MockPath
          return String.format("%s", round(f, 5));
    }
 
-   private static float round(float value, int places)
+   public static float round(float value, int places)
    {
       BigDecimal bd = new BigDecimal(Float.toString(value));
       bd = bd.setScale(places, RoundingMode.HALF_UP);

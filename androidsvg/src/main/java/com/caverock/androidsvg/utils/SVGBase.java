@@ -81,37 +81,37 @@ public class SVGBase
 {
    //static final String  TAG = "SVGBase";
 
-   private static final int     DEFAULT_PICTURE_WIDTH = 512;
-   private static final int     DEFAULT_PICTURE_HEIGHT = 512;
+   public static final int     DEFAULT_PICTURE_WIDTH = 512;
+   public static final int     DEFAULT_PICTURE_HEIGHT = 512;
 
-   private static final double  SQRT2 = 1.414213562373095;
+   public static final double  SQRT2 = 1.414213562373095;
 
    // Parser configuration singletons
    // Configures the parser that will be used for the next SVG that gets parsed
-   private static SVGExternalFileResolver  externalFileResolverSingleton = null;
-   private static boolean                  enableInternalEntitiesSingleton = true;
+   public static SVGExternalFileResolver  externalFileResolverSingleton = null;
+   public static boolean                  enableInternalEntitiesSingleton = true;
 
    // The parser configuration settings that was used for the current instance
    // WIll continue to be used for future parsing by this instance. For example
    // when parsing addition CSS.
-   private final SVGExternalFileResolver  externalFileResolver;
-   private final boolean                  enableInternalEntities;
+   public final SVGExternalFileResolver  externalFileResolver;
+   public final boolean                  enableInternalEntities;
 
    // The root svg element
-   private Svg     rootElement = null;
+   public Svg     rootElement = null;
 
    // Metadata
-   private String  title = "";
-   private String  desc = "";
+   public String  title = "";
+   public String  desc = "";
 
    // DPI to use for rendering
-   private float   renderDPI = 96f;   // default is 96
+   public float   renderDPI = 96f;   // default is 96
 
    // CSS rules
-   private final Ruleset  cssRules = new Ruleset();
+   public final Ruleset  cssRules = new Ruleset();
 
    // Map from id attribute to element
-   private final Map<String, SvgElementBase> idToElementMap = new HashMap<>();
+   public final Map<String, SvgElementBase> idToElementMap = new HashMap<>();
 
 
    enum Unit
@@ -1012,7 +1012,7 @@ public class SVGBase
    }
 
 
-   private String  cssQuotedString(String str)
+   public String  cssQuotedString(String str)
    {
       if (str.startsWith("\"") && str.endsWith("\""))
       {
@@ -1029,7 +1029,7 @@ public class SVGBase
    }
 
 
-   private Box  getDocumentDimensions(float dpi)
+   public Box  getDocumentDimensions(float dpi)
    {
       Length  w = this.rootElement.width;
       Length  h = this.rootElement.height;
@@ -1090,7 +1090,7 @@ public class SVGBase
    // Object sub-types used in the SVG object tree
 
 
-   static class  Box
+   public static class  Box
    {
       float  minX, minY, width, height;
 
@@ -1166,11 +1166,11 @@ public class SVGBase
 
 
    // Special version of Colour that indicates use of 'currentColor' keyword
-   static class CurrentColor extends SvgPaint
+   public static class CurrentColor extends SvgPaint
    {
-      private final static CurrentColor  instance = new CurrentColor();
+      public final static CurrentColor  instance = new CurrentColor();
       
-      private CurrentColor()
+      public CurrentColor()
       {
       }
       
@@ -1181,7 +1181,7 @@ public class SVGBase
    }
 
 
-   static class PaintReference extends SvgPaint
+   public static class PaintReference extends SvgPaint
    {
       final String    href;
       final SvgPaint  fallback;
@@ -1366,7 +1366,7 @@ public class SVGBase
       SVGBase document;
       SvgContainer  parent;
 
-      String  getNodeName()
+      public String  getNodeName()
       {
          return "";
       }
@@ -1374,7 +1374,7 @@ public class SVGBase
 
 
    // Any object in the tree that corresponds to an SVG element
-   static abstract class SvgElementBase extends SvgObject
+   public static abstract class SvgElementBase extends SvgObject
    {
       String        id = null;
       Boolean       spacePreserve = null;
@@ -1390,9 +1390,9 @@ public class SVGBase
 
 
    // Any object in the tree that corresponds to an SVG element
-   static abstract class SvgElement extends SvgElementBase
+   public static abstract class SvgElement extends SvgElementBase
    {
-      Box     boundingBox = null;
+      public Box     boundingBox = null;
    }
 
 
@@ -1413,7 +1413,7 @@ public class SVGBase
 
 
    // Any element that can appear inside a <switch> element.
-   static abstract class  SvgConditionalElement extends SvgElement implements SvgConditional
+   public static abstract class  SvgConditionalElement extends SvgElement implements SvgConditional
    {
       Set<String>  requiredFeatures = null;
       String       requiredExtensions = null;
@@ -1495,13 +1495,13 @@ public class SVGBase
    }
 
 
-   static abstract class SvgPreserveAspectRatioContainer extends SvgConditionalContainer
+   public static abstract class SvgPreserveAspectRatioContainer extends SvgConditionalContainer
    {
       PreserveAspectRatio  preserveAspectRatio = null;
    }
 
 
-   static abstract class SvgViewBoxContainer extends SvgPreserveAspectRatioContainer
+   public static abstract class SvgViewBoxContainer extends SvgPreserveAspectRatioContainer
    {
       Box  viewBox;
    }
@@ -1516,20 +1516,20 @@ public class SVGBase
       public String  version;
 
       @Override
-      String  getNodeName() { return "svg"; }
+      public String  getNodeName() { return "svg"; }
    }
 
 
    // An SVG element that can contain other elements.
-   static class Group extends SvgConditionalContainer implements HasTransform
+   public static class Group extends SvgConditionalContainer implements HasTransform
    {
-      Matrix  transform;
+      public Matrix  transform;
 
       @Override
       public void setTransform(Matrix transform) { this.transform = transform; }
 
       @Override
-      String  getNodeName() { return "group"; }
+      public String  getNodeName() { return "group"; }
    }
 
 
@@ -1540,18 +1540,18 @@ public class SVGBase
 
    // A <defs> object contains objects that are not rendered directly, but are instead
    // referenced from other parts of the file.
-   static class Defs extends Group implements NotDirectlyRendered
+   public static class Defs extends Group implements NotDirectlyRendered
    {
       @Override
-      String  getNodeName() { return "defs"; }
+      public String  getNodeName() { return "defs"; }
    }
 
 
    // One of the element types that can cause graphics to be drawn onto the target canvas.
    // Specifically: 'circle', 'ellipse', 'image', 'line', 'path', 'polygon', 'polyline', 'rect', 'text' and 'use'.
-   static abstract class GraphicsElement extends SvgConditionalElement implements HasTransform
+   public static abstract class GraphicsElement extends SvgConditionalElement implements HasTransform
    {
-      Matrix  transform;
+      public Matrix  transform;
 
       @Override
       public void setTransform(Matrix transform) { this.transform = transform; }
@@ -1559,16 +1559,16 @@ public class SVGBase
 
 
    // A linking element (we don't currently do anything with this. It is basically just treated like a Group.
-   static class A extends Group
+   public static class A extends Group
    {
       String  href;
 
       @Override
-      String  getNodeName() { return "a"; }
+      public String  getNodeName() { return "a"; }
    }
 
 
-   static class Use extends Group
+   public static class Use extends Group
    {
       String  href;
       Length  x;
@@ -1577,21 +1577,21 @@ public class SVGBase
       Length  height;
 
       @Override
-      String  getNodeName() { return "use"; }
+      public String  getNodeName() { return "use"; }
    }
 
 
-   static class Path extends GraphicsElement
+   public static class Path extends GraphicsElement
    {
-      PathDefinition  d;
-      Float           pathLength;
+      public PathDefinition  d;
+      public Float           pathLength;
 
       @Override
-      String  getNodeName() { return "path"; }
+      public String  getNodeName() { return "path"; }
    }
 
 
-   static class Rect extends GraphicsElement
+   public static class Rect extends GraphicsElement
    {
       Length  x;
       Length  y;
@@ -1601,22 +1601,22 @@ public class SVGBase
       Length  ry;
 
       @Override
-      String  getNodeName() { return "rect"; }
+      public String  getNodeName() { return "rect"; }
    }
 
 
-   static class Circle extends GraphicsElement
+   public static class Circle extends GraphicsElement
    {
       Length  cx;
       Length  cy;
       Length  r;
 
       @Override
-      String  getNodeName() { return "circle"; }
+      public String  getNodeName() { return "circle"; }
    }
 
 
-   static class Ellipse extends GraphicsElement
+   public static class Ellipse extends GraphicsElement
    {
       Length  cx;
       Length  cy;
@@ -1624,11 +1624,11 @@ public class SVGBase
       Length  ry;
 
       @Override
-      String  getNodeName() { return "ellipse"; }
+      public String  getNodeName() { return "ellipse"; }
    }
 
 
-   static class Line extends GraphicsElement
+   public static class Line extends GraphicsElement
    {
       Length  x1;
       Length  y1;
@@ -1636,23 +1636,23 @@ public class SVGBase
       Length  y2;
 
       @Override
-      String  getNodeName() { return "line"; }
+      public String  getNodeName() { return "line"; }
    }
 
 
-   static class PolyLine extends GraphicsElement
+   public static class PolyLine extends GraphicsElement
    {
       float[]  points;
 
       @Override
-      String  getNodeName() { return "polyline"; }
+      public String  getNodeName() { return "polyline"; }
    }
 
 
-   static class Polygon extends PolyLine
+   public static class Polygon extends PolyLine
    {
       @Override
-      String  getNodeName() { return "polygon"; }
+      public String  getNodeName() { return "polygon"; }
    }
 
 
@@ -1682,7 +1682,7 @@ public class SVGBase
    }
 
 
-   static abstract class  TextPositionedContainer extends TextContainer
+   public static abstract class  TextPositionedContainer extends TextContainer
    {
       List<Length>  x;
       List<Length>  y;
@@ -1691,35 +1691,35 @@ public class SVGBase
    }
 
 
-   static class Text extends TextPositionedContainer implements TextRoot, HasTransform
+   public static class Text extends TextPositionedContainer implements TextRoot, HasTransform
    {
-      Matrix  transform;
+      public Matrix  transform;
 
       @Override
       public void setTransform(Matrix transform) { this.transform = transform; }
       @Override
-      String  getNodeName() { return "text"; }
+      public String  getNodeName() { return "text"; }
    }
 
 
-   static class TSpan extends TextPositionedContainer implements TextChild
+   public static class TSpan extends TextPositionedContainer implements TextChild
    {
-      private TextRoot  textRoot;
+      public TextRoot  textRoot;
 
       @Override
       public void  setTextRoot(TextRoot obj) { this.textRoot = obj; }
       @Override
       public TextRoot  getTextRoot() { return this.textRoot; }
       @Override
-      String  getNodeName() { return "tspan"; }
+      public String  getNodeName() { return "tspan"; }
    }
 
 
    public static class TextSequence extends SvgObject implements TextChild
    {
-      String  text;
+      public String  text;
 
-      private TextRoot   textRoot;
+      public TextRoot   textRoot;
       
       public TextSequence(String text)
       {
@@ -1738,53 +1738,53 @@ public class SVGBase
    }
 
 
-   static class TRef extends TextContainer implements TextChild
+   public static class TRef extends TextContainer implements TextChild
    {
-      String  href;
+      public String  href;
 
-      private TextRoot   textRoot;
+      public TextRoot   textRoot;
 
       @Override
       public void  setTextRoot(TextRoot obj) { this.textRoot = obj; }
       @Override
       public TextRoot  getTextRoot() { return this.textRoot; }
       @Override
-      String  getNodeName() { return "tref"; }
+      public String  getNodeName() { return "tref"; }
    }
 
 
-   static class TextPath extends TextContainer implements TextChild
+   public static class TextPath extends TextContainer implements TextChild
    {
-      String  href;
-      Length  startOffset;
+      public String  href;
+      public Length  startOffset;
 
-      private TextRoot  textRoot;
+      public TextRoot  textRoot;
 
       @Override
       public void  setTextRoot(TextRoot obj) { this.textRoot = obj; }
       @Override
       public TextRoot  getTextRoot() { return this.textRoot; }
       @Override
-      String  getNodeName() { return "textPath"; }
+      public String  getNodeName() { return "textPath"; }
    }
 
 
    // An SVG element that can contain other elements.
-   static class Switch extends Group
+   public static class Switch extends Group
    {
       @Override
-      String  getNodeName() { return "switch"; }
+      public String  getNodeName() { return "switch"; }
    }
 
 
-   static class Symbol extends SvgViewBoxContainer implements NotDirectlyRendered
+   public static class Symbol extends SvgViewBoxContainer implements NotDirectlyRendered
    {
       @Override
-      String  getNodeName() { return "symbol"; }
+      public String  getNodeName() { return "symbol"; }
    }
 
 
-   static class Marker extends SvgViewBoxContainer implements NotDirectlyRendered
+   public static class Marker extends SvgViewBoxContainer implements NotDirectlyRendered
    {
       boolean  markerUnitsAreUser;
       Length   refX;
@@ -1794,11 +1794,11 @@ public class SVGBase
       Float    orient;
 
       @Override
-      String  getNodeName() { return "marker"; }
+      public String  getNodeName() { return "marker"; }
    }
 
 
-   static abstract class GradientElement extends SvgElementBase implements SvgContainer
+   public static abstract class GradientElement extends SvgElementBase implements SvgContainer
    {
       List<SvgObject> children = new ArrayList<>();
 
@@ -1824,7 +1824,7 @@ public class SVGBase
    }
 
 
-   static class Stop extends SvgElementBase implements SvgContainer
+   public static class Stop extends SvgElementBase implements SvgContainer
    {
       Float  offset;
 
@@ -1835,11 +1835,11 @@ public class SVGBase
       @Override
       public void addChild(SvgObject elem) { /* do nothing */ }
       @Override
-      String  getNodeName() { return "stop"; }
+      public String  getNodeName() { return "stop"; }
    }
 
 
-   static class SvgLinearGradient extends GradientElement
+   public static class SvgLinearGradient extends GradientElement
    {
       Length  x1;
       Length  y1;
@@ -1847,11 +1847,11 @@ public class SVGBase
       Length  y2;
 
       @Override
-      String  getNodeName() { return "linearGradient"; }
+      public String  getNodeName() { return "linearGradient"; }
    }
 
 
-   static class SvgRadialGradient extends GradientElement
+   public static class SvgRadialGradient extends GradientElement
    {
       Length  cx;
       Length  cy;
@@ -1860,20 +1860,20 @@ public class SVGBase
       Length  fy;
 
       @Override
-      String  getNodeName() { return "radialGradient"; }
+      public String  getNodeName() { return "radialGradient"; }
    }
 
 
-   static class ClipPath extends Group implements NotDirectlyRendered
+   public static class ClipPath extends Group implements NotDirectlyRendered
    {
       Boolean  clipPathUnitsAreUser;
 
       @Override
-      String  getNodeName() { return "clipPath"; }
+      public String  getNodeName() { return "clipPath"; }
    }
 
 
-   static class Pattern extends SvgViewBoxContainer implements NotDirectlyRendered
+   public static class Pattern extends SvgViewBoxContainer implements NotDirectlyRendered
    {
       Boolean  patternUnitsAreUser;
       Boolean  patternContentUnitsAreUser;
@@ -1885,38 +1885,38 @@ public class SVGBase
       String   href;
 
       @Override
-      String  getNodeName() { return "pattern"; }
+      public String  getNodeName() { return "pattern"; }
    }
 
 
-   static class Image extends SvgPreserveAspectRatioContainer implements HasTransform
+   public static class Image extends SvgPreserveAspectRatioContainer implements HasTransform
    {
       String  href;
       Length  x;
       Length  y;
       Length  width;
       Length  height;
-      Matrix  transform;
+      public Matrix  transform;
 
       @Override
       public void setTransform(Matrix transform) { this.transform = transform; }
       @Override
-      String  getNodeName() { return "image"; }
+      public String  getNodeName() { return "image"; }
    }
 
 
-   static class View extends SvgViewBoxContainer implements NotDirectlyRendered
+   public static class View extends SvgViewBoxContainer implements NotDirectlyRendered
    {
       static final String  NODE_NAME = "view";
 
       @Override
-      String  getNodeName() { return NODE_NAME; }
+      public String  getNodeName() { return NODE_NAME; }
    }
 
 
-   static class Mask extends SvgConditionalContainer implements NotDirectlyRendered
+   public static class Mask extends SvgConditionalContainer implements NotDirectlyRendered
    {
-      Boolean  maskUnitsAreUser;
+      public Boolean  maskUnitsAreUser;
       Boolean  maskContentUnitsAreUser;
       Length   x;
       Length   y;
@@ -1924,11 +1924,11 @@ public class SVGBase
       Length   height;
 
       @Override
-      String  getNodeName() { return "mask"; }
+      public String  getNodeName() { return "mask"; }
    }
 
 
-   static class SolidColor extends SvgElementBase implements SvgContainer
+   public static class SolidColor extends SvgElementBase implements SvgContainer
    {
       // Not needed right now. Colour is set in this.baseStyle.
       //public Length  solidColor;
@@ -1941,7 +1941,7 @@ public class SVGBase
       @Override
       public void addChild(SvgObject elem) { /* do nothing */ }
       @Override
-      String  getNodeName() { return "solidColor"; }
+      public String  getNodeName() { return "solidColor"; }
    }
 
 
@@ -1976,19 +1976,19 @@ public class SVGBase
    }
 
 
-   static class PathDefinition implements PathInterface
+   public static class PathDefinition implements PathInterface
    {
-      private byte[]   commands;
-      private int      commandsLength = 0;
-      private float[]  coords;
-      private int      coordsLength = 0;
+      public byte[]   commands;
+      public int      commandsLength = 0;
+      public float[]  coords;
+      public int      coordsLength = 0;
 
-      private static final byte  MOVETO  = 0;
-      private static final byte  LINETO  = 1;
-      private static final byte  CUBICTO = 2;
-      private static final byte  QUADTO  = 3;
-      private static final byte  ARCTO   = 4;   // 4-7
-      private static final byte  CLOSE   = 8;
+      public static final byte  MOVETO  = 0;
+      public static final byte  LINETO  = 1;
+      public static final byte  CUBICTO = 2;
+      public static final byte  QUADTO  = 3;
+      public static final byte  ARCTO   = 4;   // 4-7
+      public static final byte  CLOSE   = 8;
 
 
       PathDefinition()
@@ -2004,7 +2004,7 @@ public class SVGBase
       }
 
 
-      private void  addCommand(byte value)
+      public void  addCommand(byte value)
       {
          if (commandsLength == commands.length) {
             byte[]  newCommands = new byte[commands.length * 2];
@@ -2015,7 +2015,7 @@ public class SVGBase
       }
 
 
-      private void  coordsEnsure(int num)
+      public void  coordsEnsure(int num)
       {
          if (coords.length < (coordsLength + num)) {
             float[]  newCoords = new float[coords.length * 2];
@@ -2144,7 +2144,7 @@ public class SVGBase
    }
 
 
-   private SvgElementBase  getElementById(SvgContainer obj, String id)
+   public SvgElementBase  getElementById(SvgContainer obj, String id)
    {
       SvgElementBase  elem = (SvgElementBase) obj;
       if (id.equals(elem.id))
@@ -2167,7 +2167,7 @@ public class SVGBase
    }
 
 
-   private List<SvgObject>  getElementsByTagName(String nodeName)
+   public List<SvgObject>  getElementsByTagName(String nodeName)
    {
       List<SvgObject>  result = new ArrayList<>();
 
@@ -2177,7 +2177,7 @@ public class SVGBase
    }
 
 
-   private void  getElementsByTagName(List<SvgObject> result, SvgObject obj, String nodeName)
+   public void  getElementsByTagName(List<SvgObject> result, SvgObject obj, String nodeName)
    {
 
       if (obj.getNodeName().equals(nodeName))

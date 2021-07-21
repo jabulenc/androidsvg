@@ -34,10 +34,10 @@ import java.util.List;
 @Implements(Picture.class)
 public class MockPicture extends ShadowPicture
 {
-   private int      width = 0;
-   private int      height = 0;
-   private Canvas   canvas = null;
-   private boolean  recording = false;
+   public int      width = 0;
+   public int      height = 0;
+   public Canvas   canvas = null;
+   public boolean  recording = false;
 
 
    @Implementation

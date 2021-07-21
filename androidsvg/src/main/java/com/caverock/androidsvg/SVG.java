@@ -68,13 +68,13 @@ public class SVG
 {
    //static final String  TAG = "SVG";
 
-   private static final String  VERSION = "1.5";
+   public static final String  VERSION = "1.5";
 
-   private SVGBase  base;
+   public SVGBase  base;
 
 
    // Users should use one of the getFromX() methods to create an instance of SVG
-   private SVG(SVGBase base)
+   public SVG(SVGBase base)
    {
       this.base = base;
    }
@@ -735,7 +735,7 @@ public class SVG
    //===============================================================================================
 
 
-   SVGBase.Svg  getRootElement()
+   public SVGBase.Svg  getRootElement()
    {
       return base.getRootElement();
    }

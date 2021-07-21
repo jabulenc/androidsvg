@@ -23,24 +23,24 @@ import java.util.List;
 @Implements(Paint.class)
 public class MockPaint
 {
-   private static final String ALPHA = "alpha";
-   private static final String COLOR = "color";
-   private static final String FLAGS = "flags";
-   private static final String HINTING = "hinting";
-   private static final String PATHEFFECT = "pathEffect";
-   private static final String SHADER = "shader";
-   private static final String STRIKETHRU = "strikeThruText";
-   private static final String STROKECAP = "strokeCap";
-   private static final String STROKEJOIN = "strokeJoin";
-   private static final String STROKEWIDTH = "strokeWidth";
-   private static final String STYLE = "style";
-   private static final String TEXTSIZE = "textSize";
-   private static final String TYPEFACE = "typeface";
-   private static final String UNDERLINETEXT = "underlineText";
-   private static final String FONTFEATURES = "fontFeatures";
-   private static final String FONTVARIATION = "fontVariation";
+   public static final String ALPHA = "alpha";
+   public static final String COLOR = "color";
+   public static final String FLAGS = "flags";
+   public static final String HINTING = "hinting";
+   public static final String PATHEFFECT = "pathEffect";
+   public static final String SHADER = "shader";
+   public static final String STRIKETHRU = "strikeThruText";
+   public static final String STROKECAP = "strokeCap";
+   public static final String STROKEJOIN = "strokeJoin";
+   public static final String STROKEWIDTH = "strokeWidth";
+   public static final String STYLE = "style";
+   public static final String TEXTSIZE = "textSize";
+   public static final String TYPEFACE = "typeface";
+   public static final String UNDERLINETEXT = "underlineText";
+   public static final String FONTFEATURES = "fontFeatures";
+   public static final String FONTVARIATION = "fontVariation";
 
-   private LinkedHashMap<String, String> settings = new LinkedHashMap<>();
+   public LinkedHashMap<String, String> settings = new LinkedHashMap<>();
 
    @Implementation
    public void __constructor__()
@@ -185,7 +185,7 @@ public class MockPaint
       return "Paint(" + String.join("; ", settings.values()) + ")";
    }
 
-   private static String  num(float f)
+   public static String  num(float f)
    {
       if (f == (long) f)
          return String.format("%d", (long) f);
@@ -193,14 +193,14 @@ public class MockPaint
          return String.format("%s", round(f, 2));
    }
 
-   private static float round(float value, int places)
+   public static float round(float value, int places)
    {
       BigDecimal bd = new BigDecimal(Float.toString(value));
       bd = bd.setScale(places, RoundingMode.HALF_UP);
       return bd.floatValue();
    }
 
-   private String  genFlagsVal(int flags)
+   public String  genFlagsVal(int flags)
    {
       List<String> f = new LinkedList<>();
       for (int b=0; b<= 31; b++) {

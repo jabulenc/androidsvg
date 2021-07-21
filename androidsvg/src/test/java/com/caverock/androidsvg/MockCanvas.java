@@ -42,15 +42,15 @@ import java.util.regex.Pattern;
 @Implements(Canvas.class)
 public class MockCanvas
 {
-   private Bitmap  bitmap = null;
-   private Rect    clipRect = new Rect();
-   private Path    clipPath = new Path();
-   private Matrix  matrix = new Matrix();
+   public Bitmap  bitmap = null;
+   public Rect    clipRect = new Rect();
+   public Path    clipPath = new Path();
+   public Matrix  matrix = new Matrix();
 
-   private Stack<Path>    clipPathStack = new Stack<>();
-   private Stack<Matrix>  matrixStack = new Stack<>();
+   public Stack<Path>    clipPathStack = new Stack<>();
+   public Stack<Matrix>  matrixStack = new Stack<>();
 
-   private ArrayList<String>  operations = new ArrayList<>();
+   public ArrayList<String>  operations = new ArrayList<>();
 
 
    /**
@@ -192,7 +192,7 @@ public class MockCanvas
       return internalSave(saveFlags);
    }
 
-   private int  internalSave(int saveFlags)
+   public int  internalSave(int saveFlags)
    {
       int n = this.matrixStack.size();
       this.matrixStack.push(((saveFlags & MATRIX_SAVE_FLAG) != 0) ? new Matrix(this.matrix) : null);
@@ -246,7 +246,7 @@ public class MockCanvas
          return String.format("%s", f);
    }
 
-   private static String  paintToStr(Paint paint)
+   public static String  paintToStr(Paint paint)
    {
       return (paint == null) ? "null" : ((MockPaint) Shadow.extract(paint)).getDescription();
    }

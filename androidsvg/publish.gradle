@@ -37,8 +37,8 @@ publishing {
             url = version.endsWith('SNAPSHOT') ? snapshotRepoUrl : releaseRepoUrl
             credentials {
                 // These are set in ~/.gradle/gradle.properties
-                username project.sonatypeUsername
-                password project.sonatypePassword
+//                username project.sonatypeUsername
+//                password project.sonatypePassword
             }
         }
     }

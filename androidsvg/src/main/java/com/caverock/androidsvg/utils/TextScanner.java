@@ -28,7 +28,7 @@ public class TextScanner
    int           position = 0;
    int           inputLength;
 
-   private  final NumberParser numberParser = new NumberParser();
+   public  final NumberParser numberParser = new NumberParser();
 
 
    public TextScanner(String input)
