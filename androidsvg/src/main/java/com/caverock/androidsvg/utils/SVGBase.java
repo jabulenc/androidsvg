@@ -1092,9 +1092,9 @@ public class SVGBase
 
    public static class  Box
    {
-      float  minX, minY, width, height;
+      public float  minX, minY, width, height;
 
-      Box(float minX, float minY, float width, float height)
+      public Box(float minX, float minY, float width, float height)
       {
          this.minX = minX;
          this.minY = minY;
@@ -1102,7 +1102,7 @@ public class SVGBase
          this.height = height;
       }
 
-      Box(Box copy)
+      public Box(Box copy)
       {
          this.minX = copy.minX;
          this.minY = copy.minY;
@@ -1110,7 +1110,7 @@ public class SVGBase
          this.height = copy.height;
       }
 
-      static Box  fromLimits(float minX, float minY, float maxX, float maxY)
+      public static Box  fromLimits(float minX, float minY, float maxX, float maxY)
       {
          return new Box(minX, minY, maxX-minX, maxY-minY);
       }
@@ -1120,15 +1120,15 @@ public class SVGBase
       //   return Box.fromLimits(rect.left, rect.top, rect.right, rect.bottom);
       //}
 
-      RectF  toRectF()
+      public RectF  toRectF()
       {
          return new RectF(minX, minY, maxX(), maxY());
       }
 
-      float  maxX() { return minX + width; }
-      float  maxY() { return minY + height; }
+      public float  maxX() { return minX + width; }
+      public float  maxY() { return minY + height; }
 
-      void  union(Box other)
+      public void  union(Box other)
       {
          if (other.minX < minX) minX = other.minX;
          if (other.minY < minY) minY = other.minY;

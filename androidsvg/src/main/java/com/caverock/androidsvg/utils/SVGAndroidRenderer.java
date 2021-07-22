@@ -161,12 +161,12 @@ public class SVGAndroidRenderer
 
    public static class RendererState
    {
-      Style    style;
-      boolean  hasFill;
-      boolean  hasStroke;
-      Box      viewPort;
-      Box      viewBox;
-      boolean  spacePreserve;
+      public Style    style;
+      public boolean  hasFill;
+      public boolean  hasStroke;
+      public Box      viewPort;
+      public Box      viewBox;
+      public boolean  spacePreserve;
 
       final Paint    fillPaint;
       final Paint    strokePaint;
