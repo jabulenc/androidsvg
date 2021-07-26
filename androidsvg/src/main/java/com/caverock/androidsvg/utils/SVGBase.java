@@ -21,6 +21,7 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Path;
 import android.graphics.Picture;
 import android.graphics.RectF;
 import android.util.Log;
@@ -96,7 +97,7 @@ public class SVGBase
    // when parsing addition CSS.
    public final SVGExternalFileResolver  externalFileResolver;
    public final boolean                  enableInternalEntities;
-
+   public SVGAndroidRenderer renderer;
    // The root svg element
    public Svg     rootElement = null;
 
@@ -499,7 +500,7 @@ public class SVGBase
          renderOptions.viewPort(0f, 0f, (float) widthInPixels, (float) heightInPixels);
       }
 
-      SVGAndroidRenderer  renderer = new SVGAndroidRenderer(canvas, this.renderDPI, externalFileResolver);
+      renderer = new SVGAndroidRenderer(canvas, this.renderDPI, externalFileResolver);
 
       renderer.renderDocument(this, renderOptions);
 
@@ -533,7 +534,7 @@ public class SVGBase
       Picture  picture = new Picture();
       Canvas   canvas = picture.beginRecording(widthInPixels, heightInPixels);
 
-      SVGAndroidRenderer  renderer = new SVGAndroidRenderer(canvas, this.renderDPI, externalFileResolver);
+      renderer = new SVGAndroidRenderer(canvas, this.renderDPI, externalFileResolver);
 
       renderer.renderDocument(this, renderOptions);
 
@@ -577,7 +578,7 @@ public class SVGBase
          renderOptions.viewPort(0f, 0f, (float) canvas.getWidth(), (float) canvas.getHeight());
       }
 
-      SVGAndroidRenderer  renderer = new SVGAndroidRenderer(canvas, this.renderDPI, externalFileResolver);
+      renderer = new SVGAndroidRenderer(canvas, this.renderDPI, externalFileResolver);
 
       renderer.renderDocument(this, renderOptions);
    }
@@ -600,7 +601,7 @@ public class SVGBase
          renderOptions.viewPort(0f, 0f, (float) canvas.getWidth(), (float) canvas.getHeight());
       }
 
-      SVGAndroidRenderer  renderer = new SVGAndroidRenderer(canvas, this.renderDPI, externalFileResolver);
+      renderer = new SVGAndroidRenderer(canvas, this.renderDPI, externalFileResolver);
 
       renderer.renderDocument(this, renderOptions);
    }
@@ -1201,8 +1202,8 @@ public class SVGBase
 
    public static class Length implements Cloneable
    {
-      final float  value;
-      final Unit   unit;
+      public final float  value;
+      public final Unit   unit;
 
       final static Length  ZERO = new Length(0f);
 
@@ -1218,13 +1219,13 @@ public class SVGBase
          this.unit = Unit.px;
       }
 
-      float floatValue()
+      public float floatValue()
       {
          return value;
       }
 
       // Convert length to user units for a horizontally-related context.
-      float floatValueX(SVGAndroidRenderer renderer)
+      public float floatValueX(SVGAndroidRenderer renderer)
       {
          switch (unit)
          {
@@ -1254,7 +1255,7 @@ public class SVGBase
       }
 
       // Convert length to user units for a vertically-related context.
-      float floatValueY(SVGAndroidRenderer renderer)
+      public float floatValueY(SVGAndroidRenderer renderer)
       {
          if (unit == Unit.percent) {
             Box  viewPortUser = renderer.getCurrentViewPortInUserUnits();
@@ -1267,7 +1268,7 @@ public class SVGBase
 
       // Convert length to user units for a context that is not orientation specific.
       // For example, stroke width.
-      float floatValue(SVGAndroidRenderer renderer)
+      public float floatValue(SVGAndroidRenderer renderer)
       {
          if (unit == Unit.percent)
          {
@@ -1286,7 +1287,7 @@ public class SVGBase
 
       // Convert length to user units for a context that is not orientation specific.
       // For percentage values, use the given 'max' parameter to represent the 100% value.
-      float floatValue(SVGAndroidRenderer renderer, float max)
+      public float floatValue(SVGAndroidRenderer renderer, float max)
       {
          if (unit == Unit.percent)
          {
@@ -1297,7 +1298,7 @@ public class SVGBase
 
       // For situations (like calculating the initial viewport) when we can only rely on
       // physical real world units.
-      float floatValue(float dpi)
+      public float floatValue(float dpi)
       {
          switch (unit)
          {
@@ -1320,12 +1321,12 @@ public class SVGBase
          }
       }
 
-      boolean isZero()
+      public boolean isZero()
       {
          return value == 0f;
       }
 
-      boolean isNegative()
+      public boolean isNegative()
       {
          return value < 0f;
       }
@@ -1393,6 +1394,7 @@ public class SVGBase
    public static abstract class SvgElement extends SvgElementBase
    {
       public Box     boundingBox = null;
+      public android.graphics.Path renderedPath = null;
    }
 
 
@@ -1684,10 +1686,10 @@ public class SVGBase
 
    public static abstract class  TextPositionedContainer extends TextContainer
    {
-      List<Length>  x;
-      List<Length>  y;
-      List<Length>  dx;
-      List<Length>  dy;
+      public List<Length>  x;
+      public List<Length>  y;
+      public List<Length>  dx;
+      public List<Length>  dy;
    }
 
 

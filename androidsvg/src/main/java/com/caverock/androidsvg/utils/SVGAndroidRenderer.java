@@ -257,7 +257,7 @@ public class SVGAndroidRenderer
     * @param defaultDPI the DPI setting to use when converting real-world units such as centimetres.
     */
 
-   SVGAndroidRenderer(Canvas canvas, float defaultDPI, SVGExternalFileResolver externalFileResolver)
+   public SVGAndroidRenderer(Canvas canvas, float defaultDPI, SVGExternalFileResolver externalFileResolver)
    {
       this.canvas = canvas;
       this.dpi = defaultDPI;
@@ -4142,7 +4142,7 @@ public class SVGAndroidRenderer
 
       // Restore style state
       state = stateStack.pop();
-
+      obj.renderedPath = path;
       return path;
    }
 
