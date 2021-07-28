@@ -72,37 +72,37 @@ publishing {
             }
         }
 
-        mavenJAR(MavenPublication) {
-            artifactId = artifactIdJAR
-            groupId = group
-
-            afterEvaluate {
-               artifact libraryJar
-               artifact sourcesJar
-               artifact javadocJar
-            }
-
-            pom {
-                packaging = 'jar'
-
-                name = libraryName
-                description = libraryDescription
-                url = siteUrl
-
-                licenses {
-                    license {
-                        name = licenseName
-                        url = licenseUrl
-                        distribution = 'repo'
-                    }
-                }
-                scm {
-                    connection = gitUrl
-                    developerConnection = gitUrl
-                    url = siteUrl
-                }
-            }
-        }
+//        mavenJAR(MavenPublication) {
+//            artifactId = artifactIdJAR
+//            groupId = group
+//
+//            afterEvaluate {
+//               artifact libraryJar
+//               artifact sourcesJar
+//               artifact javadocJar
+//            }
+//
+//            pom {
+//                packaging = 'jar'
+//
+//                name = libraryName
+//                description = libraryDescription
+//                url = siteUrl
+//
+//                licenses {
+//                    license {
+//                        name = licenseName
+//                        url = licenseUrl
+//                        distribution = 'repo'
+//                    }
+//                }
+//                scm {
+//                    connection = gitUrl
+//                    developerConnection = gitUrl
+//                    url = siteUrl
+//                }
+//            }
+//        }
     }
 }
 
