@@ -170,7 +170,7 @@ task libraryJar(type: Jar, dependsOn: 'compileReleaseJavaWithJavac') {
     archiveName "${artifactIdJAR}-${version}.jar"
 }
 
-signing {
-    sign publishing.publications.mavenAAR
-    sign publishing.publications.mavenJAR
-}
+//signing {
+//    sign publishing.publications.mavenAAR
+//    sign publishing.publications.mavenJAR
+//}
