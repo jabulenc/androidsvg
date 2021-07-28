@@ -1,0 +1,2 @@
+install:
+- mvn install:install-file -Dfile=androidsvg-release.aar -DgroupId=$GROUP -DartifactId=$ARTIFACT -Dversion=$VERSION -Dpackaging=aar -DgeneratePom=true
